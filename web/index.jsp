@@ -6,11 +6,26 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-  <head>
-    <title>$Title$</title>
-  </head>
-  <body>
-  $END$
-  </body>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" >
+<html >
+
+<head>
+  <base href="${pageContext.request.contextPath}/">
+  <title>客户关系管理系统</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <meta content="MSHTML 6.00.2900.3492" name="GENERATOR" />
+</head>
+
+<frameset framespacing="0" rows="80,*" frameborder="0">
+  <frame name="top" src="top.htm" frameborder="0" noresize="noresize" scrolling="no" />
+  <frameset frameSpacing="0" frameBorder="0" cols="220,*">
+    <frame name="menu" src="menu.htm" frameBorder="0" noresize="noresize" />
+    <frame name="main" src="welcome.htm" frameBorder="0" />
+  </frameset>
+  <noframes>
+    <p>This page requires frames, but your browser does not support them.
+    </p>
+  </noframes>
+</frameset>
+
 </html>

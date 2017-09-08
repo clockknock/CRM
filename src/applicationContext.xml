@@ -50,11 +50,20 @@
 
 
     <!-- 用户模块 -->
+    <!-- Service层 -->
     <bean id="userService" class="org.itheima.crm.service.impl.UserServiceImpl">
         <property name="userDao" ref="userDao"/>
     </bean>
 
+    <!-- DAO层-->
     <bean id="userDao" class="org.itheima.crm.dao.impl.UserDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+
+    <!-- Action层 -->
+    <bean id="userAction" class="org.itheima.crm.web.action.UserAction" scope="prototype">
+        <property name="userService" ref="userService"/>
+    </bean>
+
+
 </beans>

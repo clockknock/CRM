@@ -16,5 +16,11 @@ class UserServiceImpl :UserService {
     override fun save(user: User) {
         userDao?.save(user)
     }
+
+    override fun login(user: User?): User? {
+       var user:User? = userDao?.login(user)
+        return user
+    }
+
 }
 

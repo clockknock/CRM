@@ -7,4 +7,5 @@ import org.itheima.crm.domain.User
  */
 interface UserService{
     fun save(user: User)
+    fun login(user: User?): User ?
 }

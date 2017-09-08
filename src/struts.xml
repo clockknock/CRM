@@ -7,4 +7,10 @@
 <struts>
     <!-- 配置spring托管 -->
     <constant name="struts.objectFactory" value="spring"/>
+
+    <package name="user" namespace="/user" extends="struts-default">
+        <action name="login" method="login" class="userAction">
+            <result name="success">/index.jsp</result>
+        </action>
+    </package>
 </struts>

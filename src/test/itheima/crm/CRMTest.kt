@@ -23,8 +23,17 @@ class CRMTest{
         val user=User(null,"admin","admin","123",1)
         userService!!.save(user)
     }
+
     @Test fun testMd5(){
         val md5 = MD5Util.deafultMd5("123")
         println(md5)
+    }
+
+    @Test fun testLogin(){
+
+        val user = User()
+        user.userId= 1
+        val loginUser = userService?.login(user)
+        println(loginUser)
     }
 }

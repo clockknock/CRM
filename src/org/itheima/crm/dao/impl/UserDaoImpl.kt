@@ -11,6 +11,9 @@ import org.springframework.transaction.annotation.Transactional
 */
 @Transactional
 open class UserDaoImpl : UserDao,HibernateDaoSupport() {
+    override fun login(user: User?): User? {
+        return hibernateTemplate.get(User::class.java,1)
+    }
 
     override fun save(user: User) {
         user.userPassword=MD5Util.deafultMd5(user.userPassword!!)
