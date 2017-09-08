@@ -1,5 +1,7 @@
 package org.itheima.crm.service.impl
 
+import org.hibernate.criterion.DetachedCriteria
+import org.hibernate.criterion.Restrictions
 import org.itheima.crm.dao.UserDao
 import org.itheima.crm.domain.User
 import org.itheima.crm.service.UserService
@@ -17,9 +19,17 @@ class UserServiceImpl :UserService {
         userDao?.save(user)
     }
 
-    override fun login(user: User?): User? {
-       var user:User? = userDao?.login(user)
-        return user
+    override fun login(user: User): User? {
+        val criteria = DetachedCriteria.forClass(User::class.java)
+        criteria.add(Restrictions.eq("userCode",user.userCode))
+        criteria.add(Restrictions.eq("userPassword",user.userPassword))
+
+        val users = userDao?.login(criteria)
+        println("service login $users")
+        if(users==null || users.size==0  ){
+            return null
+        }
+        return users[0] as User?
     }
 
 }

@@ -1,5 +1,6 @@
 package org.itheima.crm.dao.impl
 
+import org.hibernate.criterion.DetachedCriteria
 import org.itheima.crm.dao.UserDao
 import org.itheima.crm.domain.User
 import org.itheima.crm.utils.MD5Util
@@ -11,8 +12,9 @@ import org.springframework.transaction.annotation.Transactional
 */
 @Transactional
 open class UserDaoImpl : UserDao,HibernateDaoSupport() {
-    override fun login(user: User?): User? {
-        return hibernateTemplate.get(User::class.java,1)
+    override fun login(criteria: DetachedCriteria): MutableList<*>? {
+       return hibernateTemplate.findByCriteria(criteria)
+
     }
 
     override fun save(user: User) {

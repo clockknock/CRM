@@ -1,5 +1,6 @@
 package org.itheima.crm.dao
 
+import org.hibernate.criterion.DetachedCriteria
 import org.itheima.crm.domain.User
 
 /**
@@ -7,5 +8,5 @@ import org.itheima.crm.domain.User
  */
 interface  UserDao {
     fun save(user: User)
-    fun login(user: User?): User ?
+    fun login(criteria: DetachedCriteria): MutableList<*>?
 }

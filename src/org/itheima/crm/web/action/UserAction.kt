@@ -24,7 +24,7 @@ class UserAction :ModelDriven<User>,ActionSupport() {
     }
 
     fun login():String{
-        val loginUser:User? = userService?.login(user)
+        val loginUser: User = userService?.login(user!!) ?: return Action.ERROR
 
         println("登录成功 $loginUser")
         return Action.SUCCESS
