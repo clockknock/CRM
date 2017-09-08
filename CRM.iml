@@ -51,8 +51,12 @@
           <root url="jar://E:/data/libs/JavaEE/ssh/Spring/spring-framework-4.2.9.RELEASE/libs/spring-web-4.2.9.RELEASE.jar!/" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/.ideaLibSources/spring-web-4.2.9.RELEASE-sources.jar!/" />
+        </SOURCES>
       </library>
     </orderEntry>
+    <orderEntry type="library" name="logs" level="project" />
+    <orderEntry type="library" name="struts2-spring-plugin-2.3.32" level="project" />
   </component>
 </module>
