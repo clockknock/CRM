@@ -63,5 +63,6 @@
     <orderEntry type="library" name="struts2-spring-plugin-2.3.32" level="project" />
     <orderEntry type="library" name="mysql-connector-java-5.1.18-bin" level="project" />
     <orderEntry type="library" name="HikariCP-java6-2.3.13" level="project" />
+    <orderEntry type="library" name="junit" level="project" />
   </component>
 </module>
