@@ -29,8 +29,11 @@
     </facet>
     <facet type="hibernate" name="Hibernate">
       <configuration>
-        <datasource-map />
+        <datasource-map>
+          <unit-entry name="hibernate.cfg.xml" value="e9e5c492-4884-4a63-9def-9d6a678b5130" />
+        </datasource-map>
         <naming-strategy-map />
+        <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/hibernate.cfg.xml" />
       </configuration>
     </facet>
   </component>
@@ -58,5 +61,7 @@
     </orderEntry>
     <orderEntry type="library" name="logs" level="project" />
     <orderEntry type="library" name="struts2-spring-plugin-2.3.32" level="project" />
+    <orderEntry type="library" name="mysql-connector-java-5.1.18-bin" level="project" />
+    <orderEntry type="library" name="HikariCP-java6-2.3.13" level="project" />
   </component>
 </module>
