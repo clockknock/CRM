@@ -5,4 +5,6 @@
         "http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
+    <!-- 配置spring托管 -->
+    <constant name="struts.objectFactory" value="spring"/>
 </struts>
