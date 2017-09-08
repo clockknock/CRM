@@ -5,8 +5,8 @@
 <hibernate-mapping>
 
     <class name="org.itheima.crm.domain.User" table="sys_user" schema="crm">
-        <id name="userId">
-            <column name="user_id"  sql-type="int(11)"/>
+        <id name="userId" type="java.lang.Long">
+            <column name="user_id"  />
             <generator class="native"/>
         </id>
         <property name="userCode">

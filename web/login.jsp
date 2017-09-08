@@ -10,6 +10,8 @@
 <HTML >
 
 <head>
+    <base href="${pageContext.request.contextPath}/">
+
     <META http-equiv="content-type" content="text/html; charset=utf-8">
     <style type=text/css>
         body {
@@ -89,6 +91,16 @@
                                             </td>
                                             <td style="height: 28px">&nbsp;</td>
                                         </tr>
+                                        <tr>
+                                            <td style="height: 28px"></td>
+                                            <td style="height: 28px">
+                                                <img type="image"
+                                                       src="${pageContext.request.contextPath}/user/validateCode.action"
+                                                       alt="验证码">
+                                            </td>
+
+                                        </tr>
+
                                         <tr>
                                             <td style="height: 18px"></td>
                                             <td style="height: 18px"></td>

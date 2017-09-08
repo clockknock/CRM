@@ -32,7 +32,8 @@ class CRMTest{
     @Test fun testLogin(){
 
         val user = User()
-        user.userId= 1
+        user.userCode="admin"
+        user.userPassword="1234"
         val loginUser = userService?.login(user)
         println(loginUser)
     }

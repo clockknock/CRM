@@ -9,8 +9,17 @@
     <constant name="struts.objectFactory" value="spring"/>
 
     <package name="user" namespace="/user" extends="struts-default">
-        <action name="login" method="login" class="userAction">
-            <result name="success">/index.jsp</result>
+        <action name="*" method="do_{1}" class="userAction">
+            <!-- 登录 -->
+            <result name="loginSuccess">/index.jsp</result>
+            <result name="loginError">/login.jsp</result>
+            <!-- 验证码 -->
+            <result name="validateCodeSuccess" type="stream">
+                <param name="contentType">image/jpeg</param>
+                <param name="inputName">imageStream</param>
+                <param name="bufferSize">1024</param>
+            </result>
         </action>
+
     </package>
 </struts>
