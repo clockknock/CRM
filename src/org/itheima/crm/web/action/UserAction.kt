@@ -6,6 +6,7 @@ import com.opensymphony.xwork2.ModelDriven
 import org.apache.struts2.interceptor.ServletRequestAware
 import org.itheima.crm.domain.User
 import org.itheima.crm.service.UserService
+import org.springframework.util.StringUtils
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
@@ -31,7 +32,6 @@ class UserAction : ActionSupport(), ModelDriven<User>, ServletRequestAware {
         return imageStream
     }
 
-
     private var user: User? = null
     private var userService: UserService? = null
     fun setUserService(service: UserService) {
@@ -46,6 +46,29 @@ class UserAction : ActionSupport(), ModelDriven<User>, ServletRequestAware {
     }
 
     fun do_login(): String {
+        if(StringUtils.isEmpty(user!!.userCode)){
+            addFieldError("userCode","用户名不能为空")
+            return LOGIN_ERROR
+        }
+
+        if(StringUtils.isEmpty(user!!.userPassword)){
+            addFieldError("userPassword","密码不能为空")
+            return LOGIN_ERROR
+        }
+
+        if(StringUtils.isEmpty(user!!.validateCode)){
+            addFieldError("validateCode","验证码不能为空")
+            return LOGIN_ERROR
+        }
+
+        val validateCode = request!!.session.getAttribute("validateCode")
+
+        if(validateCode != user!!.validateCode){
+            addFieldError("validateCode","验证码错误")
+            return LOGIN_ERROR
+        }
+
+
         val loginUser: User = userService?.login(user!!) ?: return LOGIN_ERROR
         val session = request!!.session
         session.setAttribute("user", loginUser)
@@ -54,7 +77,7 @@ class UserAction : ActionSupport(), ModelDriven<User>, ServletRequestAware {
 
     fun do_validateCode(): String {
         val code = ValidateCode(130,28,4,4)
-        request!!.session.setAttribute("validateCode", code)
+        request!!.session.setAttribute("validateCode", code.code)
         imageStream = code.getInputStream()
         return VALIDATECODE_SUCCESS
     }

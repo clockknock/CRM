@@ -1,3 +1,5 @@
+<%@ page import="org.itheima.crm.domain.User" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: zhong
@@ -7,6 +9,13 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" >
+
+<%
+    User user = (User) request.getSession().getAttribute("user");
+    if(user!=null){
+        response.sendRedirect(request.getContextPath()+"/index.jsp");
+    }
+%>
 <HTML >
 
 <head>
@@ -68,28 +77,52 @@
                                         <tr>
                                             <td style="height: 28px" width="80">登 录 名：</td>
                                             <td style="height: 28px" width="150">
-                                                <input id="txtName" style="width: 130px" name="userCode">
+                                                <s:textfield id="txtName" style="width: 130px"
+                                                   name="userCode"/>
                                             </td>
                                             <td style="height: 28px" width=370>
-                                                <span id="RequiredFieldValidator3" style="font-weight: bold; visibility: hidden; color: white">请输入登录名</span>
+                                                <span id="RequiredFieldValidator3"
+                                                      style="font-weight: bold; visibility:
+                                                      visible; color: red">
+                                                    <s:fielderror >
+                                                        <s:param>userCode</s:param>
+                                                    </s:fielderror>
+                                                </span>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td style="height: 28px">登录密码：</td>
                                             <td style="height: 28px">
-                                                <input id="txtPwd" style="width: 130px" type="password" name="userPassword">
+                                                <s:password id="txtPwd" style="width: 130px"
+                                                     type="password"
+                                                   name="userPassword"/>
                                             </td>
                                             <td style="height: 28px">
-                                                <span id="RequiredFieldValidator4" style="font-weight: bold; visibility: hidden; color: white">请输入密码</span>
+                                                <span id="RequiredFieldValidator4"
+                                                      style="font-weight: bold; visibility:
+                                                      visible; color: red">
+                                                    <s:fielderror >
+                                                        <s:param>userPassword</s:param>
+                                                    </s:fielderror>
+                                                </span>
                                             </td>
                                         </tr>
 
                                         <tr>
                                             <td style="height: 28px">验证码：</td>
                                             <td style="height: 28px">
-                                                <input id="txtCode" style="width: 130px" name="txtCode">
+                                                <s:textfield id="txtCode" style="width: 130px"
+                                                   name="validateCode"/>
                                             </td>
-                                            <td style="height: 28px">&nbsp;</td>
+                                            <td style="height: 28px">
+                                                <span id="RequiredFieldValidator5"
+                                                      style="font-weight: bold; visibility:
+                                                      visible; color: red">
+                                                    <s:fielderror >
+                                                        <s:param>validateCode</s:param>
+                                                    </s:fielderror>
+                                                </span>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td style="height: 28px"></td>

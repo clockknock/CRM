@@ -20,7 +20,7 @@ class CRMTest{
     private var userService:UserService? = null
 
     @Test fun testAdd(){
-        val user=User(null,"admin","admin","123",1)
+        val user=User(null,"admin","admin","123",1,null)
         userService!!.save(user)
     }
 
