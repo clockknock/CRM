@@ -74,7 +74,6 @@ class UserAction : ActionSupport(), ModelDriven<User>, ServletRequestAware {
             return LOGIN_ERROR
         }
 
-
         val loginUser: User = userService?.login(user!!) ?: return LOGIN_ERROR
         val session = request!!.session
         session.setAttribute("user", loginUser)
@@ -95,7 +94,6 @@ class UserAction : ActionSupport(), ModelDriven<User>, ServletRequestAware {
     }
 
 }
-
 
 fun ValidateCode.getInputStream(): InputStream? {
     var baos: ByteArrayOutputStream? = null

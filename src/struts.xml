@@ -10,7 +10,6 @@
     <constant name="struts.ui.theme" value="simple"/>
 
 
-
     <package name="user" namespace="/user" extends="struts-default">
         <action name="*" method="do_{1}" class="userAction">
             <!-- 登录 -->
@@ -23,8 +22,36 @@
                 <param name="bufferSize">1024</param>
             </result>
             <!-- 登出 -->
-            <result name="logoutSuccess" >/login.jsp</result>
+            <result name="logoutSuccess">/login.jsp</result>
         </action>
 
     </package>
+
+    <package name="test" namespace="/test" extends="struts-default">
+
+        <!-- 定义拦截器 -->
+        <interceptors>
+            <!-- 配置自己的拦截器 -->
+            <interceptor name="loginInterceptor"
+                         class="org.itheima.crm.web.interceptor.LoginInterceptor"/>
+
+            <!-- 配置拦截栈 -->
+            <interceptor-stack name="baseStack">
+                <interceptor-ref name="loginInterceptor"/>
+                <interceptor-ref name="defaultStack"/>
+            </interceptor-stack>
+        </interceptors>
+
+        <global-results>
+            <result name="needLogin">/login.jsp</result>
+        </global-results>
+
+        <action name="test" method="test" class="org.itheima.crm.web.action.TestAction">
+            <!-- 引用拦截器 -->
+            <interceptor-ref name="baseStack"/>
+            <result name="success"/>
+        </action>
+
+    </package>
+
 </struts>
