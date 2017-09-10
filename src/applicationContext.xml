@@ -6,7 +6,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
-<!-- 数据库相关 -->
+    <!-- 数据库相关 -->
 
     <!-- 引入jdbc.properties -->
     <context:property-placeholder location="classpath:jdbc.properties"/>
@@ -58,22 +58,32 @@
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
 
-    <!-- 用户模块 -->
+    <!-- User模块 -->
     <!-- Service层 -->
     <bean id="userService" class="org.itheima.crm.service.impl.UserServiceImpl">
         <property name="userDao" ref="userDao"/>
     </bean>
-
     <!-- DAO层-->
     <bean id="userDao" class="org.itheima.crm.dao.impl.UserDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
-
     <!-- Action层 -->
     <bean id="userAction" class="org.itheima.crm.web.action.UserAction" scope="prototype">
         <property name="userService" ref="userService"/>
     </bean>
 
+    <!-- Customer模块 -->
+    <bean id="customer" class="org.itheima.crm.domain.Customer"/>
 
+    <bean id="customerAction" class="org.itheima.crm.web.action.CustomerAction">
+        <property name="customerService" ref="customerService"/>
+    </bean>
 
+    <bean id="customerService" class="org.itheima.crm.service.impl.CustomerServiceImpl">
+        <property name="customerDao" ref="customerDao"/>
+     </bean>
+
+    <bean id="customerDao" class="org.itheima.crm.dao.impl.CustomerDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
 </beans>

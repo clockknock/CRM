@@ -21,7 +21,8 @@ object MD5Util{
      * @param count
      * @return
      */
-    fun md5(password: String, count: Int): String {
+    private fun md5(password: String, count: Int): String {
+        @Suppress("NAME_SHADOWING")
         var password = password
         for (i in 0 until count) {
             password = md5(password)

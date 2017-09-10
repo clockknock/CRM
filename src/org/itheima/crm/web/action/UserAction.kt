@@ -61,17 +61,18 @@ class UserAction : ActionSupport(), ModelDriven<User>, ServletRequestAware {
             return LOGIN_ERROR
         }
 
-        val validateCode = request!!.session.getAttribute("validateCode") as String
+      /*  TODO 先不填验证码了
+      val validateCode = request!!.session.getAttribute("validateCode") as String
 
         if(StringUtils.isEmpty(validateCode)){
-            addFieldError("validateCode","服务器出现了问题")
+            addFieldError("validateCode","无法刷新验证码")
             return LOGIN_ERROR
         }
 
         if(!validateCode.equals(user!!.validateCode,true)){
             addFieldError("validateCode","验证码错误")
             return LOGIN_ERROR
-        }
+        }*/
 
         val loginUser: User = userService?.login(user!!) ?: return LOGIN_ERROR
         val session = request!!.session
@@ -112,6 +113,7 @@ fun ValidateCode.getInputStream(): InputStream? {
 
                 e.printStackTrace()
             }
+            @Suppress("UNUSED_VALUE")
             baos =null
         }
     }

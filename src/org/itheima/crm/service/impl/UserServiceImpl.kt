@@ -6,11 +6,13 @@ import org.itheima.crm.dao.UserDao
 import org.itheima.crm.domain.User
 import org.itheima.crm.service.UserService
 import org.itheima.crm.utils.MD5Util
+import org.springframework.transaction.annotation.Transactional
 
 /**
  * Created by 钟未鸣 on 2017/9/8 .
  */
-class UserServiceImpl :UserService {
+@Transactional
+open class UserServiceImpl :UserService {
     private var userDao: UserDao? =null
     fun setUserDao(userDao: UserDao){
         this.userDao = userDao
@@ -33,6 +35,8 @@ class UserServiceImpl :UserService {
         }
         return users[0] as User?
     }
+
+
 
 }
 

@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional
 /**
 * Created by 钟未鸣 on 2017/9/8 .
 */
-@Transactional
 open class UserDaoImpl : UserDao,HibernateDaoSupport() {
     override fun login(criteria: DetachedCriteria): MutableList<*>? {
        return hibernateTemplate.findByCriteria(criteria)

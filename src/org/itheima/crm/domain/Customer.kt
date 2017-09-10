@@ -11,7 +11,8 @@ private BaseDict custSource;
 private BaseDict custIndustry;
 private BaseDict cstLevel;
  */
-class Customer(var custId: Long?, var custName: String?, var custPhone: String?, var custMobile:
+data class Customer(var custId: Long?, var custName: String?, var custPhone: String?, var
+custMobile:
 String?, var cstImage: String?, var custSource: BaseDict?, var custIndustry: BaseDict?, var
                cstLevel: BaseDict?) {
     constructor() : this(null, null, null, null, null, null, null, null)

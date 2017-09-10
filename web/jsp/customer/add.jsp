@@ -12,7 +12,8 @@
 	</head>
 
 	<body>
-		<form id="form1" name="form1" action="${pageContext.request.contextPath}/customerServlet?method=addsubmit" method="post">
+		<form id="form1" name="form1"
+			  action="${pageContext.request.contextPath}/customer/save.action" method="post">
 
 			<table cellspacing="0" cellpadding="0" width="98%" border="0">
 				<tbody>
@@ -63,7 +64,8 @@
 									</td>
 									<td>所属行业 ：</td>
 									<td>
-										<input class="textbox" id="sChannel2" style="width: 180px" maxlength="50" name="custSource">
+										<input class="textbox" id="sChannel2" style="width: 180px"
+											   maxlength="50" name="custIndustry">
 									</td>
 								</tr>
 
