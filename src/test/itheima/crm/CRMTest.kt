@@ -37,4 +37,10 @@ class CRMTest{
         val loginUser = userService?.login(user)
         println(loginUser)
     }
+
+    @Test fun testStringEquals(){
+        var s1 = "1a"
+        var s2 = "1A"
+        println(s1.equals(s2,true))
+    }
 }

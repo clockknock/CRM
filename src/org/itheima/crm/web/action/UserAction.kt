@@ -21,6 +21,7 @@ class UserAction : ActionSupport(), ModelDriven<User>, ServletRequestAware {
     private val LOGIN_ERROR = "loginError"
     private val VALIDATECODE_SUCCESS = "validateCodeSuccess"
     private val VALIDATECODE_ERROR = "validateCodeError"
+    private val LOGOUT_SUCCESS = "logoutSuccess"
 
     private var request: HttpServletRequest? = null
     override fun setServletRequest(request: HttpServletRequest?) {
@@ -61,9 +62,14 @@ class UserAction : ActionSupport(), ModelDriven<User>, ServletRequestAware {
             return LOGIN_ERROR
         }
 
-        val validateCode = request!!.session.getAttribute("validateCode")
+        val validateCode = request!!.session.getAttribute("validateCode") as String
 
-        if(validateCode != user!!.validateCode){
+        if(StringUtils.isEmpty(validateCode)){
+            addFieldError("validateCode","服务器出现了问题")
+            return LOGIN_ERROR
+        }
+
+        if(!validateCode.equals(user!!.validateCode,true)){
             addFieldError("validateCode","验证码错误")
             return LOGIN_ERROR
         }
@@ -82,7 +88,14 @@ class UserAction : ActionSupport(), ModelDriven<User>, ServletRequestAware {
         return VALIDATECODE_SUCCESS
     }
 
+    fun do_logout():String{
+        request!!.session.removeAttribute("user")
+
+        return LOGOUT_SUCCESS
+    }
+
 }
+
 
 fun ValidateCode.getInputStream(): InputStream? {
     var baos: ByteArrayOutputStream? = null

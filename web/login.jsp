@@ -16,8 +16,8 @@
         response.sendRedirect(request.getContextPath()+"/index.jsp");
     }
 %>
-<HTML >
 
+<HTML >
 <head>
     <base href="${pageContext.request.contextPath}/">
 

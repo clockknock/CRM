@@ -18,7 +18,7 @@
 </head>
 
 <frameset framespacing="0" rows="80,*" frameborder="0">
-    <frame name="top" src="top.htm" frameborder="0" noresize="noresize" scrolling="no"/>
+    <frame name="top" src="top.jsp" frameborder="0" noresize="noresize" scrolling="no"/>
     <frameset frameSpacing="0" frameBorder="0" cols="220,*">
         <frame name="menu" src="menu.htm" frameBorder="0" noresize="noresize"/>
         <frame name="main" src="welcome.htm" frameBorder="0"/>

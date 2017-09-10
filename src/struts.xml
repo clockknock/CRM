@@ -7,6 +7,9 @@
 <struts>
     <!-- 配置spring托管 -->
     <constant name="struts.objectFactory" value="spring"/>
+    <constant name="struts.ui.theme" value="simple"/>
+
+
 
     <package name="user" namespace="/user" extends="struts-default">
         <action name="*" method="do_{1}" class="userAction">
@@ -19,6 +22,8 @@
                 <param name="inputName">imageStream</param>
                 <param name="bufferSize">1024</param>
             </result>
+            <!-- 登出 -->
+            <result name="logoutSuccess" >/login.jsp</result>
         </action>
 
     </package>
