@@ -20,7 +20,6 @@ class UserAction : ActionSupport(), ModelDriven<User>, ServletRequestAware {
     private val LOGIN_SUCCESS = "loginSuccess"
     private val LOGIN_ERROR = "loginError"
     private val VALIDATECODE_SUCCESS = "validateCodeSuccess"
-    private val VALIDATECODE_ERROR = "validateCodeError"
     private val LOGOUT_SUCCESS = "logoutSuccess"
 
     private var request: HttpServletRequest? = null
