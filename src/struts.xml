@@ -50,8 +50,7 @@
     </package>
 
     <package name="test" namespace="/test" extends="base">
-        <action name="test" method="test" class="org.itheima.crm.web.action.TestAction">
-        </action>
+        <action name="test" method="test" class="org.itheima.crm.web.action.TestAction" />
     </package>
 
 </struts>

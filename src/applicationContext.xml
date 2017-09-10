@@ -30,12 +30,21 @@
                 <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
                 <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
                 <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+                <prop key="hibernate.connection.url">jdbc:mysql://localhost:3306/crm</prop>
+                <prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
             </props>
         </property>
         <property name="mappingDirectoryLocations">
             <array>
                 <value>${hibernate.mapping.dir}</value>
             </array>
+        </property>
+        <property name="mappingLocations">
+            <list>
+                <value>classpath:org/itheima/crm/domain/BaseDict.hbm.xml</value>
+                <value>classpath:org/itheima/crm/domain/Customer.hbm.xml</value>
+                <value>classpath:org/itheima/crm/domain/Customer.hbm.xml</value>
+            </list>
         </property>
     </bean>
 
