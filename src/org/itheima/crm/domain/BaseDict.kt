@@ -11,7 +11,7 @@ private Integer dictSort;
 private Integer dictState;
 private String dictComment;
  */
-class BaseDict(var dictId: Long?, var dictTypeCode: String?, var dictTypeName: String?, var
+data class BaseDict(var dictId: Long?, var dictTypeCode: String?, var dictTypeName: String?, var
 dictItemName: String?,
                var dictItemCode: String?, var dictSort: Int?, var dictState: Int?, var
                dictComment: String?) {

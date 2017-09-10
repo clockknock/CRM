@@ -52,6 +52,7 @@
     <package name="customer" namespace="/customer" extends="base">
         <action name="*" method="do_{1}" class="customerAction">
             <result name="saveSuccess" type="redirect" >/jsp/customer/list.jsp</result>
+            <result name="resultDictSuccess"></result>
         </action>
     </package>
 

@@ -49,22 +49,26 @@
 								<tr>
 									<td>客户名称：</td>
 									<td>
-										<input class="textbox" id="sChannel2" style="width: 180px" maxlength="50" name="custName">
+										<input class="textbox" id="cust_name" style="width: 180px"
+											   maxlength="50"
+											   name="custName">
 									</td>
 									<td>客户级别 ：</td>
 									<td>
-										<input class="textbox" id="sChannel2" style="width: 180px" maxlength="50" name="custLevel">
+										<input class="textbox" id="cust_level" style="width: 180px"
+											   maxlength="50" name="custLevel">
 									</td>
 								</tr>
 
 								<tr>
 									<td>信息来源 ：</td>
 									<td>
-										<input class="textbox" id="sChannel2" style="width: 180px" maxlength="50" name="custSource">
+										<input class="textbox" id="cust_source" style="width: 180px"
+											   maxlength="50" name="custSource">
 									</td>
 									<td>所属行业 ：</td>
 									<td>
-										<input class="textbox" id="sChannel2" style="width: 180px"
+										<input class="textbox" id="cust_industry" style="width: 180px"
 											   maxlength="50" name="custIndustry">
 									</td>
 								</tr>
@@ -72,11 +76,13 @@
 								<tr>
 									<td>固定电话 ：</td>
 									<td>
-										<input class="textbox" id="sChannel2" style="width: 180px" maxlength="50" name="custPhone">
+										<input class="textbox" id="cust_phone" style="width: 180px"
+											   maxlength="50" name="custPhone">
 									</td>
 									<td>移动电话 ：</td>
 									<td>
-										<input class="textbox" id="sChannel2" style="width: 180px" maxlength="50" name="custMobile">
+										<input class="textbox" id="cust_mobile" style="width: 180px"
+											   maxlength="50" name="custMobile">
 									</td>
 								</tr>
 

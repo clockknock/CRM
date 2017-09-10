@@ -73,17 +73,23 @@
     </bean>
 
     <!-- Customer模块 -->
-    <bean id="customer" class="org.itheima.crm.domain.Customer"/>
-
     <bean id="customerAction" class="org.itheima.crm.web.action.CustomerAction">
         <property name="customerService" ref="customerService"/>
+        <property name="dictService" ref="dictService"/>
     </bean>
-
     <bean id="customerService" class="org.itheima.crm.service.impl.CustomerServiceImpl">
         <property name="customerDao" ref="customerDao"/>
      </bean>
-
     <bean id="customerDao" class="org.itheima.crm.dao.impl.CustomerDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+
+
+    <bean id="dictService" class="org.itheima.crm.service.impl.DictServiceImpl">
+        <property name="dictDao" ref="dictDao"/>
+    </bean>
+    <bean id="dictDao" class="org.itheima.crm.dao.impl.DictDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
 </beans>

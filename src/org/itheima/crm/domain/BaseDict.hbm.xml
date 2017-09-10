@@ -10,25 +10,25 @@
             <generator class="native"/>
         </id>
         <property name="dictTypeCode">
-            <column name="dict_type_code" sql-type="varchar(45)" length="45" not-null="true"/>
+            <column name="dict_type_code" sql-type="varchar(45)" length="45" not-null="false"/>
         </property>
         <property name="dictTypeName">
-            <column name="dict_type_name" sql-type="varchar(45)" length="45" not-null="true"/>
+            <column name="dict_type_name" sql-type="varchar(45)" length="45" not-null="false"/>
         </property>
         <property name="dictItemName">
-            <column name="dict_item_name" sql-type="varchar(45)" length="45" not-null="true"/>
+            <column name="dict_item_name" sql-type="varchar(45)" length="45" not-null="false"/>
         </property>
         <property name="dictItemCode">
-            <column name="dict_item_code" sql-type="varchar(45)" length="45" not-null="true"/>
+            <column name="dict_item_code" sql-type="varchar(45)" length="45" not-null="false"/>
         </property>
         <property name="dictSort">
-            <column name="dict_sort" sql-type="int(11)" not-null="true"/>
+            <column name="dict_sort" sql-type="int(11)" not-null="false"/>
         </property>
         <property name="dictState">
-            <column name="dict_state" sql-type="int(11)" not-null="true"/>
+            <column name="dict_state" sql-type="int(11)" not-null="false"/>
         </property>
         <property name="dictComment">
-            <column name="dict_comment" sql-type="text" not-null="true"/>
+            <column name="dict_comment" sql-type="text" not-null="false"/>
         </property>
     </class>
 </hibernate-mapping>
