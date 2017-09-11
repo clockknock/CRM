@@ -9,9 +9,10 @@ import org.springframework.orm.hibernate5.support.HibernateDaoSupport
  * Created by 钟未鸣 on 2017/9/10 .
  */
 class DictDaoImpl : DictDao,HibernateDaoSupport() {
-    override fun findList(criteria: DetachedCriteria): List<*> {
+    override fun findList(criteria: DetachedCriteria): List<BaseDict> {
 
-        return hibernateTemplate.findByCriteria(criteria)
+        @Suppress("UNCHECKED_CAST")
+        return hibernateTemplate.findByCriteria(criteria) as List<BaseDict>
     }
 
     override fun save(dict: BaseDict) {

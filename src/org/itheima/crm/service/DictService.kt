@@ -8,5 +8,5 @@ import org.itheima.crm.domain.BaseDict
  */
 interface DictService{
     fun save(dict: BaseDict)
-    fun findList(criteria: DetachedCriteria) : List<*>?
+    fun findList(criteria: DetachedCriteria) : List<BaseDict>?
 }

@@ -64,11 +64,16 @@ class CustomerAction : ActionSupport(), ModelDriven<Customer> {
     }
 
     fun do_dict(): String{
-        val criteria = DetachedCriteria.forClass(BaseDict::class.java)
-        println(dictTypeCode)
-        criteria.add(Restrictions.eq("dictTypeCode",dictTypeCode))
-        val findList = dictService!!.findList(criteria)
-        setDicts(findList as ArrayList<*>)
+        try {
+            val criteria = DetachedCriteria.forClass(BaseDict::class.java)
+            println(dictTypeCode)
+            criteria.add(Restrictions.eq("dictTypeCode", dictTypeCode))
+            val findList = dictService!!.findList(criteria)
+            setDicts(findList as ArrayList<BaseDict>)
+        } catch (e: Exception) {
+
+            e.printStackTrace()
+        }
 
         return RESULTDICTSUCCESS
     }

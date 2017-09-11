@@ -19,7 +19,7 @@ open class DictServiceImpl : DictService{
         dictDao?.save(dict)
     }
 
-    override fun findList(criteria: DetachedCriteria): List<*>? {
+    override fun findList(criteria: DetachedCriteria): List<BaseDict>? {
         return dictDao?.findList(criteria)
     }
 
