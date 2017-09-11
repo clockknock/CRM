@@ -1,4 +1,5 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+﻿<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -13,27 +14,26 @@
     <script src="${pageContext.request.contextPath}/js/jquery-1.8.3.min.js"></script>
     <script>
         function addOptions(typeCode, selectId) {
-            console.log("addOpt")
-            var url = "${pageContext.request.contextPath}/customer/dict.action"
-            var data = {"dictTypeCode": typeCode}
+            var url = "${pageContext.request.contextPath}/customer/dict.action";
+            var data = {"dictTypeCode": typeCode};
             var callback = function (dicts) {
-
                 $(dicts).each(function (i, dict) {
-                    console.log(dict)
-                    $("#" + selectId).append("<option value='" + i + "'>" + dict.dictItemName +
+            var idSelector = "#" + selectId;
+                    console.log(idSelector);
+                    $(idSelector).append("<option value='" + dict.dictId + "'>" +
+                        dict.dictItemName +
                         "</option>")
                 })
-            }
-            var type = "json"
+            };
+            var type = "json";
             $.post(url, data, callback, type)
-
         }
 
         $(function () {
             addOptions("006", "custLevel");
             addOptions("001", "custIndustry");
-            addOptions("002","custSource")
-        })
+            addOptions("002", "custSource");
+        });
     </script>
     <meta content="MSHTML 6.00.2900.3492" name="GENERATOR"/>
 </head>
@@ -77,15 +77,16 @@
                     <tr>
                         <td>客户名称：</td>
                         <td>
-                            <input class="textbox" id="cust_name" style="width: 180px"
-                                   maxlength="50"
-                                   name="custName">
+                            <s:textfield class="textbox" id="cust_name" style="width: 180px"
+                                         maxlength="50"
+                                         name="custName"/>
                         </td>
                         <td>客户级别 ：</td>
                         <td>
                             <%--<input class="textbox" id="cust_level" style="width: 180px"--%>
                             <%--maxlength="50" name="custLevel">--%>
-                            <select name="custLevel" id="custLevel" style="width: 180px;height:
+                            <select name="cstLevel.dictId" id="custLevel"
+                                    style="width: 180px;height:
                             22px;">
                                 <option value="0">请选择</option>
                             </select>
@@ -95,7 +96,8 @@
                     <tr>
                         <td>信息来源 ：</td>
                         <td>
-                            <select name="custSource" id="custSource" style="width: 180px;height:
+                            <select name="custSource.dictId" id="custSource"
+                                    style="width: 180px;height:
                             22px;">
                                 <option value="0">请选择</option>
                             </select>
@@ -103,7 +105,8 @@
                         <td>所属行业 ：</td>
                         <td>
 
-                            <select name="custIndustry" id="custIndustry" style="width: 180px;height:
+                            <select name="custIndustry.dictId" id="custIndustry"
+                                    style="width: 180px;height:
                             22px;">
                                 <option value="0">请选择</option>
                             </select>
@@ -113,13 +116,20 @@
                     <tr>
                         <td>固定电话 ：</td>
                         <td>
-                            <input class="textbox" id="cust_phone" style="width: 180px"
-                                   maxlength="50" name="custPhone">
+                            <s:textfield class="textbox" id="cust_phone" style="width: 180px"
+                                         maxlength="50" name="custPhone"/>
                         </td>
                         <td>移动电话 ：</td>
                         <td>
-                            <input class="textbox" id="cust_mobile" style="width: 180px"
-                                   maxlength="50" name="custMobile">
+                            <s:textfield class="textbox" id="cust_mobile" style="width: 180px"
+                                         maxlength="50" name="custMobile"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td style="color: #ff0000;">
+                            <s:actionerror />
                         </td>
                     </tr>
 

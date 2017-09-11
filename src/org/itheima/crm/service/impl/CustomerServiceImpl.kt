@@ -16,6 +16,7 @@ open class CustomerServiceImpl : CustomerService {
     }
 
     override fun saveCustomer(customer: Customer) {
+        println(customer)
         customerDao?.saveCustomer(customer)
     }
 }

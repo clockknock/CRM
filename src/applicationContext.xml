@@ -43,7 +43,6 @@
             <list>
                 <value>classpath:org/itheima/crm/domain/BaseDict.hbm.xml</value>
                 <value>classpath:org/itheima/crm/domain/Customer.hbm.xml</value>
-                <value>classpath:org/itheima/crm/domain/Customer.hbm.xml</value>
             </list>
         </property>
     </bean>
@@ -73,7 +72,7 @@
     </bean>
 
     <!-- Customer模块 -->
-    <bean id="customerAction" class="org.itheima.crm.web.action.CustomerAction">
+    <bean id="customerAction" class="org.itheima.crm.web.action.CustomerAction" scope="prototype">
         <property name="customerService" ref="customerService"/>
         <property name="dictService" ref="dictService"/>
     </bean>
