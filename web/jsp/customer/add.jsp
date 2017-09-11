@@ -18,11 +18,22 @@
             var data = {"dictTypeCode": typeCode};
             var callback = function (dicts) {
                 $(dicts).each(function (i, dict) {
-            var idSelector = "#" + selectId;
-                    console.log(idSelector);
-                    $(idSelector).append("<option value='" + dict.dictId + "'>" +
-                        dict.dictItemName +
-                        "</option>")
+                    var idSelector = "#" + selectId;
+
+                    var idData = "#" + selectId + "_data";
+                    idData = $(idData).attr("data");
+                    console.log(idData)
+                    //处理数据回显的判断
+                    if (idData == dict.dictId) {
+                        $(idSelector).append("<option value='" + dict.dictId +
+                            "' selected='selected'>" +
+                            dict.dictItemName +
+                            "</option>")
+                    } else {
+                        $(idSelector).append("<option value='" + dict.dictId + "' >" +
+                            dict.dictItemName +
+                            "</option>")
+                    }
                 })
             };
             var type = "json";
@@ -82,9 +93,7 @@
                                          name="custName"/>
                         </td>
                         <td>客户级别 ：</td>
-                        <td>
-                            <%--<input class="textbox" id="cust_level" style="width: 180px"--%>
-                            <%--maxlength="50" name="custLevel">--%>
+                        <td id="custLevel_data" data="<s:property value="cstLevel.dictId" />">
                             <select name="cstLevel.dictId" id="custLevel"
                                     style="width: 180px;height:
                             22px;">
@@ -95,7 +104,7 @@
 
                     <tr>
                         <td>信息来源 ：</td>
-                        <td>
+                        <td id="custSource_data" data="<s:property value="custSource.dictId" />">
                             <select name="custSource.dictId" id="custSource"
                                     style="width: 180px;height:
                             22px;">
@@ -103,7 +112,8 @@
                             </select>
                         </td>
                         <td>所属行业 ：</td>
-                        <td>
+                        <td id="custIndustry_data"
+                            data="<s:property value="custIndustry.dictId" />">
 
                             <select name="custIndustry.dictId" id="custIndustry"
                                     style="width: 180px;height:
@@ -129,7 +139,7 @@
                     <tr>
                         <td></td>
                         <td style="color: #ff0000;">
-                            <s:actionerror />
+                            <s:actionerror/>
                         </td>
                     </tr>
 

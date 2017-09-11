@@ -8,6 +8,7 @@ import org.itheima.crm.domain.BaseDict
 import org.itheima.crm.domain.Customer
 import org.itheima.crm.service.CustomerService
 import org.itheima.crm.service.DictService
+import org.springframework.util.StringUtils
 
 /**
  * Created by 钟未鸣 on 2017/9/10 .
@@ -55,11 +56,11 @@ class CustomerAction : ActionSupport(), ModelDriven<Customer> {
     }
 
     fun do_save(): String {
-//        if (true) {
-//            addActionError("有错误")
-//            return SAVEERROR
-//        }
-        println("save : $customer")
+
+        if (customerDataIsNull(customer!!)) {
+            return SAVEERROR
+        }
+
         customerService!!.saveCustomer(customer!!)
 
         return SAVESUCCESS
@@ -79,5 +80,45 @@ class CustomerAction : ActionSupport(), ModelDriven<Customer> {
         return RESULTDICTSUCCESS
     }
 
+
+    private fun customerDataIsNull(customer: Customer): Boolean {
+        if (StringUtils.isEmpty(customer.custName)) {
+            addActionError("客户名不能为空")
+            return true
+        }
+
+        if (StringUtils.isEmpty(customer.custPhone)) {
+            addActionError("固定电话不能为空")
+            return true
+        }
+
+        if (StringUtils.isEmpty(customer.custMobile)) {
+            addActionError("移动电话不能为空")
+            return true
+        }
+
+        //cstLevel为空或其id为0
+        if (customer.cstLevel == null || customer.cstLevel?.dictId ==
+                0L) {
+            addActionError("客户级别不能为空")
+            return true
+        }
+
+        //cstIndustry为空或其id为0
+        if (customer.custIndustry == null || customer.custIndustry?.dictId ==
+                0L) {
+            addActionError("所属行业不能为空")
+            return true
+        }
+
+        //cstSource为空或其id为0
+        if (customer.custSource == null || customer.custSource?.dictId ==
+                0L) {
+            addActionError("信息来源不能为空")
+            return true
+        }
+
+        return false
+    }
 
 }
