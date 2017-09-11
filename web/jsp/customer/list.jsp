@@ -12,7 +12,7 @@
     <link href="${pageContext.request.contextPath }/css/Manage.css" type="text/css"
           rel="stylesheet"/>
     <script type="text/javascript"
-            src="${pageContext.request.contextPath }/js/jquery-1.4.4.min.js"></script>
+            src="${pageContext.request.contextPath }/js/jquery-1.8.3.min.js"></script>
 
     <script language=javascript>
         function to_page(page) {

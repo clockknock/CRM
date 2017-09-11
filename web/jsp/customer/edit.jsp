@@ -13,7 +13,7 @@
 	type="text/css" rel="stylesheet" />
 <meta content="MSHTML 6.00.2900.3492" name="GENERATOR" />
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/js/jquery-1.4.4.min.js"></script>
+	src="${pageContext.request.contextPath}/js/jquery-1.8.3.min.js"></script>
 
 <style type="text/css">
 .errorMessage {

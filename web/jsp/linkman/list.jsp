@@ -12,7 +12,7 @@
 <link href="${pageContext.request.contextPath}/css/Manage.css"
 	type="text/css" rel="stylesheet" />
 <script type="text/javascript"
-	src="${pageContext.request.contextPath }/js/jquery-1.4.4.min.js"></script>
+	src="${pageContext.request.contextPath }/js/jquery-1.8.3.min.js"></script>
 
 <script language=javascript>
 	function to_page(page) {
@@ -72,7 +72,7 @@
 											<tbody>
 												<tr>
 													<td>联系人名称：</td>
-													<td><input class="textbox" id="sChannel2"
+													<td><input class="textbox" id="lkm_name"
 														style="WIDTH: 80px" maxLength="50" name="lkm_name"></td>
 
 													<td>性别：</td>
@@ -83,19 +83,19 @@
 															<option value="2">女</option>
 													</select>
 													<td>办公电话：</td>
-													<td><input class="textbox" id="sChannel2"
+													<td><input class="textbox" id="lkm_phone"
 														style="WIDTH: 80px" maxLength="50" name="lkm_phone"></td>
 
 													<td>手机：</td>
-													<td><input class="textbox" id="sChannel2"
+													<td><input class="textbox" id="lkm_mobile"
 														style="WIDTH: 80px" maxLength="50" name="lkm_mobile"></td>
 
 													<td>邮箱：</td>
-													<td><input class="textbox" id="sChannel2"
+													<td><input class="textbox" id="lkm_email"
 														style="WIDTH: 80px" maxLength="50" name="lkm_email"></td>
 
 													<td>QQ：</td>
-													<td><input class="textbox" id="sChannel2"
+													<td><input class="textbox" id="lkm_qq"
 														style="WIDTH: 80px" maxLength="50" name="lkm_qq"></td>
 
 													<td><input class="button" id="sButton2" type="submit"
@@ -146,34 +146,9 @@
 								</tr>
 
 								<tr>
-									<td><span id="pagelink">
-											<div
-												style="line-height: 20px; height: 20px; text-align: right">
-												共[<b><s:property value="totalCount" /></b>]条记录,[<b><s:property
-														value="totalPage" /></b>]页 ,每页显示
-
-												<s:select name="pageSize" onchange="javascript:to_page()"
-													list="#{'3':'3','5':'5','10':'10','20':'20','30':'30'}" />
-
-												条
-												<s:if test="currentPage > 1">
-												[<a href="javascript:to_page(${currentPage-1})">前一页</a>] 
-												</s:if>
-
-												<B>${currentPage}</B>
-
-												<s:if test="currentPage < totalPage"> 
-												[<a href="javascript:to_page(${currentPage+1})">后一页</a>] 
-												</s:if>
-
-												到
-												<s:textfield type="text" size="3" id="page"
-													name="currentPage" />
-
-												页 <input type="button" value="Go"
-													onclick="javascript:to_page()" />
-											</div>
-									</span></td>
+									<td>
+										<%--分页显示--%>
+									</td>
 								</tr>
 							</tbody>
 						</table>
