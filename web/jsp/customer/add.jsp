@@ -50,7 +50,7 @@
 </head>
 
 <body>
-<form id="form1" name="form1"
+<form id="form1" name="form1" enctype="multipart/form-data"
       action="${pageContext.request.contextPath}/customer/save.action" method="post">
 
     <table cellspacing="0" cellpadding="0" width="98%" border="0">
@@ -133,6 +133,14 @@
                         <td>
                             <s:textfield class="textbox" id="cust_mobile" style="width: 180px"
                                          maxlength="50" name="custMobile"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>用户资质 ：</td>
+                        <td>
+                            <input type="file" id="imageUpLoad" name="imageUpLoad" style="width:
+                            180px;height: 22px;">
                         </td>
                     </tr>
 

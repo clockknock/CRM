@@ -8,7 +8,10 @@ import org.itheima.crm.domain.BaseDict
 import org.itheima.crm.domain.Customer
 import org.itheima.crm.service.CustomerService
 import org.itheima.crm.service.DictService
+import org.itheima.crm.utils.PropertyPlaceholder
+import org.itheima.crm.utils.UploadUtil
 import org.springframework.util.StringUtils
+import java.io.File
 
 /**
  * Created by 钟未鸣 on 2017/9/10 .
@@ -17,17 +20,41 @@ class CustomerAction : ActionSupport(), ModelDriven<Customer> {
     private val SAVESUCCESS = "saveSuccess"
     private val SAVEERROR = "saveError"
     private val RESULTDICTSUCCESS = "resultDictSuccess"
+    private val LISTSUCCESS = "listSuccess"
+
+    private var imageUpLoad: File? = null
+    private var imageUpLoadContentType: String? = null
+    private var imageUpLoadFileName: String? = null
+
+    private var fileUploadPath: String? = PropertyPlaceholder.getProperty("file.upload.dir")
+    @Suppress("unused")
+    fun setImageUpLoad(imageUpLoad: File) {
+        this.imageUpLoad = imageUpLoad
+    }
+
+    @Suppress("unused")
+    fun setImageUpLoadContentType(contentType: String) {
+        this.imageUpLoadContentType = contentType
+    }
+
+    @Suppress("unused")
+    fun setImageUpLoadFileName(fileName: String) {
+        this.imageUpLoadFileName = fileName
+    }
+
 
     private var dicts: ArrayList<*>? = null
-    fun setDicts(dicts: ArrayList<*>) {
+    private fun setDicts(dicts: ArrayList<*>) {
         this.dicts = dicts
     }
 
+    @Suppress("unused")
     fun getDicts(): ArrayList<*>? {
         return dicts
     }
 
     private var dictTypeCode: String? = null
+    @Suppress("unused")
     fun setDictTypeCode(code: String) {
         dictTypeCode = code
     }
@@ -55,17 +82,27 @@ class CustomerAction : ActionSupport(), ModelDriven<Customer> {
         this.dictService = dictService
     }
 
+    @Suppress("unused")
     fun do_save(): String {
 
         if (customerDataIsNull(customer!!)) {
             return SAVEERROR
         }
+        //处理文件上传
+        val subPath = UploadUtil.genUploadPath(imageUpLoadFileName!!)
+        fileUploadPath += subPath
+        val file = File(fileUploadPath)
+        if (!file.exists()) {
+            file.mkdirs()
+        }
+        imageUpLoad?.copyTo(file, true)
 
+        customer!!.cstImage = subPath
         customerService!!.saveCustomer(customer!!)
-
         return SAVESUCCESS
     }
 
+    @Suppress("unused")
     fun do_dict(): String {
         try {
             val criteria = DetachedCriteria.forClass(BaseDict::class.java)
@@ -73,14 +110,26 @@ class CustomerAction : ActionSupport(), ModelDriven<Customer> {
             val findList = dictService!!.findList(criteria)
             setDicts(findList as ArrayList<BaseDict>)
         } catch (e: Exception) {
-
             e.printStackTrace()
         }
 
         return RESULTDICTSUCCESS
     }
 
+    @Suppress("unused")
+    fun do_list(): String {
+        val criteria = DetachedCriteria.forClass(Customer::class.java)
 
+        val findList = dictService!!.findList(criteria)
+
+        println(findList)
+
+        return LISTSUCCESS
+    }
+
+    /**
+     * @return true 有错误   false没错误
+     */
     private fun customerDataIsNull(customer: Customer): Boolean {
         if (StringUtils.isEmpty(customer.custName)) {
             addActionError("客户名不能为空")
@@ -118,7 +167,13 @@ class CustomerAction : ActionSupport(), ModelDriven<Customer> {
             return true
         }
 
+        if (StringUtils.isEmpty(imageUpLoadFileName)) {
+            addActionError("未选择资质图片")
+            return true
+        }
+
         return false
     }
+
 
 }

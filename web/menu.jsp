@@ -152,7 +152,10 @@
                                 </tr>
                                 <tr>
                                     <td class="menusmall">
-                                        <a class="style2" href="customerservlet?method=list" target="main">－ 客户列表</a>
+                                        <a class="style2"
+                                           href="${pageContext.request.contextPath}/customer/list.action"
+                                           target="main">－
+                                            客户列表</a>
                                     </td>
                                 </tr>
                                 </tbody>

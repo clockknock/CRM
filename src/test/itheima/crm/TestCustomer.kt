@@ -8,7 +8,10 @@ import java.util.Random
 import org.itheima.crm.domain.BaseDict
 import org.hibernate.criterion.Restrictions
 import org.hibernate.criterion.DetachedCriteria
+import org.itheima.crm.service.DictService
 import org.itheima.crm.service.impl.DictServiceImpl
+import org.itheima.crm.utils.PropertyPlaceholder
+import org.itheima.crm.utils.UploadUtil
 import org.springframework.beans.factory.annotation.Autowired
 
 
@@ -19,10 +22,18 @@ import org.springframework.beans.factory.annotation.Autowired
 @ContextConfiguration("classpath:applicationContext.xml")
 class TestCustomer {
     @Autowired
-    private var dictService: DictServiceImpl? = null
-
-    @Test fun testSave(){
-
+    private var dictService: DictService? = null
+//    fun setDIctService(dictService: DictService){
+//        this.dictService = dictService
+//    }
+//
+    @Test fun testPropertyHolder(){
+        val property = PropertyPlaceholder.getProperty("file.upload.dir")
+        println(property)
+    }
+    @Test fun getUploadPath(){
+        val genUploadPath = UploadUtil.genUploadPath("1.jpg")
+        println(genUploadPath)
     }
 
     private fun rdmDict(code: String): BaseDict {

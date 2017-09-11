@@ -10,6 +10,17 @@
 
     <!-- 引入jdbc.properties -->
     <context:property-placeholder location="classpath:jdbc.properties"/>
+    <!-- 开启注解扫描 kotlin不能用spel,被字符串模板占用了 -->
+    <context:annotation-config />
+    <!-- 自定义PropertyPlaceHolder -->
+
+    <bean id="propertyHolder" class="org.itheima.crm.utils.PropertyPlaceholder">
+        <property name="locations">
+            <list>
+                <value>classpath:jdbc.properties</value>
+            </list>
+        </property>
+    </bean>
 
     <!-- 引入Hikari -->
     <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource">
