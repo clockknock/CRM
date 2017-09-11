@@ -64,5 +64,14 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="libs" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://E:/data/libs/JavaEE/ssh/struts-2.3.32-all/lib/struts2-json-plugin-2.3.32.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

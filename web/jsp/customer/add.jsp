@@ -8,6 +8,22 @@
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 		<link href="${pageContext.request.contextPath }/css/Style.css" type="text/css" rel="stylesheet" />
 		<link href="${pageContext.request.contextPath }/css/Manage.css" type="text/css" rel="stylesheet" />
+		<script	src="${pageContext.request.contextPath}/js/jquery-1.8.3.min.js"></script>
+		<script>
+            console.log("add.jsp load")
+			$(function(){
+			    var url ="${pageContext.request.contextPath}/customer/dict.action"
+				var data={"dictTypeCode":"001"}
+				var callback= function (dicts) {
+                    $(dicts).each(function(i,element){
+					    console.log(element)
+					})
+                }
+                var type="json"
+				$.post(url,data,callback,type)
+
+			})
+		</script>
 		<meta content="MSHTML 6.00.2900.3492" name="GENERATOR" />
 	</head>
 

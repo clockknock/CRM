@@ -17,6 +17,14 @@ class CustomerAction : ActionSupport(), ModelDriven<Customer> {
     private val SAVEERROR = "saveError"
     private val RESULTDICTSUCCESS="resultDictSuccess"
 
+    private var dicts :ArrayList<*>? =null
+    fun setDicts(dicts: ArrayList<*>){
+        this.dicts = dicts
+    }
+    fun getDicts(): ArrayList<*>? {
+        return dicts
+    }
+
     private var dictTypeCode: String?=null
     fun setDictTypeCode(code: String){
         dictTypeCode = code
@@ -60,7 +68,7 @@ class CustomerAction : ActionSupport(), ModelDriven<Customer> {
         println(dictTypeCode)
         criteria.add(Restrictions.eq("dictTypeCode",dictTypeCode))
         val findList = dictService!!.findList(criteria)
-        println(findList)
+        setDicts(findList as ArrayList<*>)
 
         return RESULTDICTSUCCESS
     }

@@ -10,7 +10,7 @@
 
     <constant name="struts.ui.theme" value="simple"/>
 
-    <package name="base" abstract="true" extends="struts-default">
+    <package name="base" abstract="true" extends="json-default">
         <!-- 定义拦截器 -->
         <interceptors>
             <!-- 配置自己的拦截器 -->
@@ -52,7 +52,10 @@
     <package name="customer" namespace="/customer" extends="base">
         <action name="*" method="do_{1}" class="customerAction">
             <result name="saveSuccess" type="redirect" >/jsp/customer/list.jsp</result>
-            <result name="resultDictSuccess"></result>
+            <result name="resultDictSuccess" type="json" >
+                <param name="defaultEncoding">utf-8</param>
+                <param name="root">dicts</param>
+            </result>
         </action>
     </package>
 
