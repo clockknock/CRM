@@ -1,5 +1,6 @@
 package org.itheima.crm.web.action
 
+import com.opensymphony.xwork2.ActionContext
 import com.opensymphony.xwork2.ActionSupport
 import com.opensymphony.xwork2.ModelDriven
 import org.hibernate.criterion.DetachedCriteria
@@ -59,6 +60,18 @@ class CustomerAction : ActionSupport(), ModelDriven<Customer> {
         dictTypeCode = code
     }
 
+    private var currentPage: Int = 1
+    @Suppress("unused")
+    fun setCurrentPage(currentPage: Int) {
+        this.currentPage = currentPage
+    }
+
+    private var pageSize: Int = 5
+    @Suppress("unused")
+    fun setPageSize(pageSize: Int) {
+        this.pageSize = pageSize
+    }
+
     private var customer: Customer? = null
     override fun getModel(): Customer {
         if (customer == null) {
@@ -116,13 +129,15 @@ class CustomerAction : ActionSupport(), ModelDriven<Customer> {
         return RESULTDICTSUCCESS
     }
 
+
     @Suppress("unused")
     fun do_list(): String {
+        val stack = ActionContext.getContext().valueStack
+
         val criteria = DetachedCriteria.forClass(Customer::class.java)
+        val pageBean = customerService!!.findBean(criteria, currentPage, pageSize)
 
-        val findList = dictService!!.findList(criteria)
-
-        println(findList)
+        stack.push(pageBean)
 
         return LISTSUCCESS
     }
@@ -174,6 +189,5 @@ class CustomerAction : ActionSupport(), ModelDriven<Customer> {
 
         return false
     }
-
 
 }

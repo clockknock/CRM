@@ -1,5 +1,6 @@
 package org.itheima.crm.dao
 
+import org.hibernate.criterion.DetachedCriteria
 import org.itheima.crm.domain.Customer
 
 /**
@@ -7,4 +8,6 @@ import org.itheima.crm.domain.Customer
  */
 interface CustomerDao{
     fun saveCustomer(customer: Customer)
+    fun findList(criteria: DetachedCriteria, start: Int, end: Int): List<Customer>
+    fun totalCount(criteria: DetachedCriteria): Long
 }

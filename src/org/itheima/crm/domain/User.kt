@@ -7,4 +7,6 @@ package org.itheima.crm.domain
 data class User(var userId: Long?, var userCode: String?, var userName: String?,
                 var userPassword: String?, var userState: Int?,var validateCode: String?) {
     constructor() :this(null,null,null,null,null,null)
+
+
 }

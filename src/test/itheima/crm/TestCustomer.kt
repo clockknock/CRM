@@ -1,18 +1,20 @@
 package test.itheima.crm
 
-import org.junit.Test
-import org.junit.runner.RunWith
-import org.springframework.test.context.ContextConfiguration
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner
-import java.util.Random
-import org.itheima.crm.domain.BaseDict
-import org.hibernate.criterion.Restrictions
 import org.hibernate.criterion.DetachedCriteria
+import org.hibernate.criterion.Restrictions
+import org.itheima.crm.domain.BaseDict
+import org.itheima.crm.domain.Customer
+import org.itheima.crm.domain.PageBean
+import org.itheima.crm.service.CustomerService
 import org.itheima.crm.service.DictService
-import org.itheima.crm.service.impl.DictServiceImpl
 import org.itheima.crm.utils.PropertyPlaceholder
 import org.itheima.crm.utils.UploadUtil
+import org.junit.Test
+import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.test.context.ContextConfiguration
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner
+import java.util.*
 
 
 /**
@@ -23,10 +25,9 @@ import org.springframework.beans.factory.annotation.Autowired
 class TestCustomer {
     @Autowired
     private var dictService: DictService? = null
-//    fun setDIctService(dictService: DictService){
-//        this.dictService = dictService
-//    }
-//
+    @Autowired
+    private var customerService: CustomerService? =null
+
     @Test fun testPropertyHolder(){
         val property = PropertyPlaceholder.getProperty("file.upload.dir")
         println(property)
@@ -36,9 +37,30 @@ class TestCustomer {
         println(genUploadPath)
     }
 
+    @Test fun testPageBean(){
+        var bean=PageBean<Customer>()
+        bean.currentPage=1
+        println(bean)
+    }
+
+    @Test fun testSaveCustomer(){
+        for (i in 0..24) {
+            val customer = Customer()
+            customer.custName=rdmName()
+            customer.custMobile=rdmMobile()
+            customer.custPhone = rdmPhone()
+
+            customer.custIndustry = rdmDict("001")
+            customer.custSource = rdmDict("002")
+            customer.cstLevel =rdmDict("006")
+
+            customerService!!.saveCustomer(customer)
+        }
+    }
+
     private fun rdmDict(code: String): BaseDict {
         val criteria = DetachedCriteria.forClass(BaseDict::class.java)
-        criteria.add(Restrictions.eq("dict_type_code", code))
+        criteria.add(Restrictions.eq("dictTypeCode", code))
 
         val list = dictService?.findList(criteria)
         val rdm = Random()
