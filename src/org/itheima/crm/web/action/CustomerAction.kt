@@ -81,11 +81,7 @@ class CustomerAction : ActionSupport(), ModelDriven<Customer> {
         return customer as Customer
     }
 
-    /**
-     * customerService注入
-     */
     private var customerService: CustomerService? = null
-
     fun setCustomerService(customerService: CustomerService) {
         this.customerService = customerService
     }
@@ -143,6 +139,7 @@ class CustomerAction : ActionSupport(), ModelDriven<Customer> {
     }
 
     /**
+     * 校验customer的数据有没有错误,以决定返回resultType
      * @return true 有错误   false没错误
      */
     private fun customerDataIsNull(customer: Customer): Boolean {

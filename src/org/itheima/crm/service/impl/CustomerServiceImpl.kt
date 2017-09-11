@@ -17,7 +17,6 @@ open class CustomerServiceImpl : CustomerService {
         val totalCount = customerDao!!.totalCount(criteria)
         criteria.setProjection(null)
         val start = (currentPage - 1) * pageSize
-        println("start:$start ---end:$pageSize")
         pageBean.datas = customerDao!!.findList(criteria,start, pageSize)
         pageBean.totalCount = totalCount
         pageBean.currentPage = currentPage

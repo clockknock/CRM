@@ -1,4 +1,5 @@
-﻿<%@ taglib prefix="s" uri="/struts-tags" %>
+﻿<%--suppress ALL --%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -16,6 +17,7 @@
 
     <script language=javascript>
         function to_page(page) {
+            console.log(page)
             if (page) {
                 $("#page").val(page);
             }
@@ -106,7 +108,7 @@
                                                style="width: 80px" maxlength="50" name="custMobile">
                                     </td>
 
-                                    <td><input class="button" id="sButton2" type="custMobile"
+                                    <td><input class="button" id="sButton2"
                                                value=" 筛选 " name="sButton2"></td>
                                 </tr>
                                 </tbody>
@@ -121,7 +123,7 @@
                                    cellspacing="1" cellpadding="2" rules="all" border="0">
                                 <tbody>
                                 <tr style="font-weight: bold; font-style: normal; background-color: #eeeeee; text-decoration: none">
-                                    <td>客户名称</td>
+                                    <td width="35%">客户名称</td>
                                     <td>客户级别</td>
                                     <td>客户来源</td>
                                     <td>电话</td>
@@ -156,14 +158,17 @@
                                                     style="line-height: 20px; height: 20px; text-align: right">
 												共[<b>${totalCount}</b>]条记录,[<b>${totalPage}</b>]页
 												,每页显示
-												<select name="pageSize">
-												
-
-												</select>
+												<s:select name="pageSize"
+                                                          list="#{'5':'5','10':'10','20':'20','30':'30'}"
+                                                          onchange="to_page()"></s:select>
 												条
+                                                <s:if test="currentPage >1">
 												[<a href="javascript:to_page(${currentPage-1})">前一页</a>]
+                                                </s:if>
 												<B><s:property value="currentPage"/></B>
+                                                <s:if test="currentPage < totalPage">
 												[<a href="javascript:to_page(${currentPage+1})">后一页</a>]
+                                                </s:if>
 												到
 												<input type="text" size="3" id="page"
                                                        name="currentPage"/>
@@ -190,7 +195,7 @@
             <td width="15">
                 <img src="${pageContext.request.contextPath}/images/new_024.jpg" border="0">
             </td>
-            <td align=middle width="100%"
+            <td align="center" width="100%"
                 background="${pageContext.request.contextPath}/images/new_025.jpg" height="15"></td>
             <td width="15">
                 <img src="${pageContext.request.contextPath}/images/new_026.jpg" border="0">
