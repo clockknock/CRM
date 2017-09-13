@@ -13,7 +13,13 @@ import org.springframework.transaction.annotation.Transactional
  */
 @Transactional
 open class CustomerServiceImpl : CustomerService {
+
     private var customerDao: CustomerDao? = null
+
+    override fun delete(customer: Customer) {
+        customerDao!!.delete(customer)
+    }
+
     fun setCustomerDao(customerDao: CustomerDao){
         this.customerDao =customerDao
     }

@@ -12,4 +12,5 @@ interface CustomerDao{
     fun totalCount(criteria: DetachedCriteria): Long
     fun findById(custId: Long): Customer
     fun update(customer: Customer)
+    fun delete(customer: Customer)
 }

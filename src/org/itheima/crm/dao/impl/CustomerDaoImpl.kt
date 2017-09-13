@@ -10,6 +10,10 @@ import org.springframework.orm.hibernate5.support.HibernateDaoSupport
  * Created by 钟未鸣 on 2017/9/10 .
  */
 class CustomerDaoImpl : CustomerDao,HibernateDaoSupport() {
+    override fun delete(customer: Customer) {
+        hibernateTemplate.delete(customer)
+    }
+
     override fun update(customer: Customer) {
         hibernateTemplate.update(customer)
     }

@@ -25,6 +25,7 @@ class CustomerAction : ActionSupport(), ModelDriven<Customer> {
     private val EDITSUCCESS = "editSuccess"
     private val UPDATESUCCESS = "updateSuccess"
     private val UPDATEERROR = "updateError"
+    private val DELETESUCCESS = "deleteSuccess"
 
 
     private var imageUpLoad: File? = null
@@ -181,6 +182,21 @@ class CustomerAction : ActionSupport(), ModelDriven<Customer> {
 
         customerService!!.update(customer!!)
         return UPDATESUCCESS
+    }
+
+    @Suppress("unused")
+    fun do_delete(): String{
+        val find = customerService!!.findById(customer!!.custId!!)
+        customerService!!.delete(find)
+
+      /*不删图片
+      val image = File(imgDir, find.cstImage)
+        if(image.exists()){
+            val delete = image.delete()
+            println("delete:$delete")
+        }*/
+
+        return DELETESUCCESS
     }
 
 

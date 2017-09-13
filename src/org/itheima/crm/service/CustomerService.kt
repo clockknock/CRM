@@ -14,5 +14,6 @@ interface CustomerService {
     fun findBean(criteria: DetachedCriteria, currentPage: Int, pageSize: Int): PageBean<Customer>
     fun findById(custId: Long): Customer
     fun update(customer: Customer)
+    fun delete(customer: Customer)
 
 }

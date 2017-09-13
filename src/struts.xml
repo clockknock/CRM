@@ -63,9 +63,11 @@
             <result name="listSuccess">/jsp/customer/list.jsp</result>
             <!-- 编辑 -->
             <result name="editSuccess">/jsp/customer/edit.jsp</result>
-            <!--更新 -->
+            <!-- 更新 -->
             <result name="updateSuccess" type="redirectAction">list</result>
             <result name="updateError">/jsp/customer/edit.jsp</result>
+            <!-- 删除 -->
+            <result name="deleteSuccess" type="redirectAction">list</result>
         </action>
     </package>
 

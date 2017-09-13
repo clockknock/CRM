@@ -162,7 +162,8 @@
                                         <td><s:property value="#customer.custMobile"/></td>
                                         <td><a
                                                 href="${pageContext.request.contextPath}/customer/edit.action?custId=<s:property value="#customer.custId"/>">修改</a>
-                                            &nbsp;&nbsp; <a href="">删除</a>
+                                            &nbsp;&nbsp; <a
+                                                    href="${pageContext.request.contextPath}/customer/delete.action?custId=<s:property value="#customer.custId"/>">删除</a>
                                         </td>
                                     </tr>
                                 </s:iterator>
