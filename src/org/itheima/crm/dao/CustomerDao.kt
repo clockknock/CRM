@@ -6,7 +6,7 @@ import org.itheima.crm.domain.Customer
 /**
  * Created by 钟未鸣 on 2017/9/10 .
  */
-interface CustomerDao{
+interface CustomerDao {
     fun saveCustomer(customer: Customer)
     fun findList(criteria: DetachedCriteria, start: Int, end: Int): List<Customer>
     fun totalCount(criteria: DetachedCriteria): Long

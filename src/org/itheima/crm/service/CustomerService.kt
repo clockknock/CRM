@@ -15,5 +15,6 @@ interface CustomerService {
     fun findById(custId: Long): Customer
     fun update(customer: Customer)
     fun delete(customer: Customer)
+    fun findList(): ArrayList<Customer>
 
 }

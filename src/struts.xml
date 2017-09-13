@@ -73,7 +73,12 @@
 
     <package name="linkman" namespace="/linkman" extends="base">
         <action name="*" method="do_{1}" class="linkmanAction">
+            <!-- 跳转至add.jsp -->
+            <result name="addSuccess" >/jsp/linkman/add.jsp</result>
+            <!-- 跳转至linkman list -->
             <result name="listSuccess">/jsp/linkman/list.jsp</result>
+            <!-- 保存成功:跳转至linkman list -->
+            <result name="saveSuccess" type="redirectAction">list</result>
         </action>
     </package>
 

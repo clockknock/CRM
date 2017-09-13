@@ -179,7 +179,7 @@
                                 <tr>
                                     <td class="menuSmall">
                                         <a class="style2"
-                                           href="${pageContext.request.contextPath}/jsp/linkman/add.jsp"
+                                           href="${pageContext.request.contextPath}/linkman/add.action"
                                            target="main">－
                                             新增联系人</a>
                                     </td>

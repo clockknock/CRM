@@ -10,6 +10,8 @@ import org.springframework.orm.hibernate5.support.HibernateDaoSupport
  * Created by 钟未鸣 on 2017/9/10 .
  */
 class CustomerDaoImpl : CustomerDao,HibernateDaoSupport() {
+
+
     override fun delete(customer: Customer) {
         hibernateTemplate.delete(customer)
     }
@@ -29,6 +31,9 @@ class CustomerDaoImpl : CustomerDao,HibernateDaoSupport() {
 
     override fun findList(criteria: DetachedCriteria, start: Int, end: Int): List<Customer> {
         @Suppress("UNCHECKED_CAST")
+        if(start==0 && end ==0){
+            return hibernateTemplate.findByCriteria(criteria) as List<Customer>
+        }
         return hibernateTemplate.findByCriteria(criteria,start,end) as List<Customer>
     }
 
