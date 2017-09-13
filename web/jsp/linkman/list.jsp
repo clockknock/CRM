@@ -183,6 +183,7 @@
         </tbody>
     </table>
 </form>
+<s:debug/>
 </body>
 
 </html>

@@ -1,5 +1,6 @@
 package org.itheima.crm.dao
 
+import org.hibernate.criterion.DetachedCriteria
 import org.itheima.crm.domain.Linkman
 
 /**
@@ -7,4 +8,6 @@ import org.itheima.crm.domain.Linkman
  */
 interface LinkmanDao {
     fun save(linkman: Linkman)
+    fun totalCount(criteria: DetachedCriteria): Long
+    fun findList(criteria: DetachedCriteria, start: Int, pageSize: Int): List<Linkman>
 }

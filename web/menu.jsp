@@ -87,8 +87,8 @@
     <script type="text/javascript">
         function menuDisplay(obj_id) {
             for(var i = 1; i <= 9; i++) {
-                var obj = document.getElementById('table_' + i);
-                if(obj) {
+                var obj1 = document.getElementById('table_' + i);
+                if(obj1) {
                     document.getElementById('table_' + i).style.display = 'none';
                     document.getElementById('table_' + i + 'Span').innerText = '＋';
                 }
@@ -117,7 +117,7 @@
             <td width="15">
                 <img src="images/new_005.jpg" border="0">
             </td>
-            <td align="middle" width="180" background="images/new_006.jpg" height="35">
+            <td align="center" width="180" background="images/new_006.jpg" height="35">
                 <b>人力资源 －功能菜单</b>
             </td>
             <td width="15">
@@ -187,7 +187,7 @@
                                 <tr>
                                     <td class=menuSmall>
                                         <a class=style2
-                                           href="${pageContext.request.contextPath}/jsp/linkman/list.jsp" target=main>－联系人列表</A>
+                                           href="${pageContext.request.contextPath}/linkman/list.action" target=main>－联系人列表</A>
                                     </td>
                                 </tr>
 
@@ -325,7 +325,7 @@
             <td width="15">
                 <img src="images/new_010.jpg" border="0">
             </td>
-            <td align="middle" width="180" background="images/new_011.jpg" height="15"></td>
+            <td align="center" width="180" background="images/new_011.jpg" height="15"></td>
             <td width="15">
                 <img src="images/new_012.jpg" border="0">
             </td>

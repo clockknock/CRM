@@ -3,7 +3,9 @@ package org.itheima.crm.web.action
 import com.opensymphony.xwork2.ActionContext
 import com.opensymphony.xwork2.ActionSupport
 import com.opensymphony.xwork2.ModelDriven
+import org.hibernate.criterion.DetachedCriteria
 import org.itheima.crm.domain.Linkman
+import org.itheima.crm.domain.PageBean
 import org.itheima.crm.service.CustomerService
 import org.itheima.crm.service.LinkmanService
 import org.springframework.beans.factory.annotation.Autowired
@@ -12,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired
  * Created by 钟未鸣 on 2017/9/13 .
  */
 class LinkmanAction : ActionSupport(), ModelDriven<Linkman> {
+    private var currentPage = 1
+    private var pageSize = 10
 
     var linkman: Linkman? = null
     override fun getModel(): Linkman {
@@ -40,6 +44,13 @@ class LinkmanAction : ActionSupport(), ModelDriven<Linkman> {
 
     @Suppress("unused")
     fun do_list(): String {
+        val criteria = DetachedCriteria.forClass(Linkman::class.java)
+
+        val pageBean =linkmanService.findPage(criteria, currentPage, pageSize)
+        println("dolist:$pageBean")
+        val stack = ActionContext.getContext().valueStack
+
+        stack.push(pageBean)
         return LISTSUCCESS
     }
 
@@ -57,7 +68,7 @@ class LinkmanAction : ActionSupport(), ModelDriven<Linkman> {
      * @return true:传过来的数据不齐全  false:传过来数据齐全
      */
     private fun checkLinkmanDataHasError(): Boolean {
-        if(linkman!!.customer!!.custId==0L){
+        if (linkman!!.customer!!.custId == 0L) {
             addActionError("所属客户不能为空!")
             return true
         }
