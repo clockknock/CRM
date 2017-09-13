@@ -11,4 +11,5 @@ interface CustomerDao{
     fun findList(criteria: DetachedCriteria, start: Int, end: Int): List<Customer>
     fun totalCount(criteria: DetachedCriteria): Long
     fun findById(custId: Long): Customer
+    fun update(customer: Customer)
 }

@@ -41,7 +41,7 @@
 <form id="form1" name="form1"
       action="${pageContext.request.contextPath}/customer/update.action"
       method="post" enctype="multipart/form-data">
-    <s:hidden name="custId" value="custId"/>
+    <input type="hidden" name="custId" value="<s:property value="custId"/>">
 
     <table cellspacing="0" cellpadding="0" width="98%" border="0">
         <tbody>

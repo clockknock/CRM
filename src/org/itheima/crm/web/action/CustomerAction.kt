@@ -11,7 +11,6 @@ import org.itheima.crm.service.CustomerService
 import org.itheima.crm.service.DictService
 import org.itheima.crm.utils.PropertyPlaceholder
 import org.itheima.crm.utils.UploadUtil
-import org.springframework.context.ApplicationContext
 import org.springframework.util.StringUtils
 import java.io.File
 
@@ -24,6 +23,9 @@ class CustomerAction : ActionSupport(), ModelDriven<Customer> {
     private val RESULTDICTSUCCESS = "resultDictSuccess"
     private val LISTSUCCESS = "listSuccess"
     private val EDITSUCCESS = "editSuccess"
+    private val UPDATESUCCESS = "updateSuccess"
+    private val UPDATEERROR = "updateError"
+
 
     private var imageUpLoad: File? = null
     private var imageUpLoadContentType: String? = null
@@ -93,6 +95,12 @@ class CustomerAction : ActionSupport(), ModelDriven<Customer> {
         this.dictService = dictService
     }
 
+    override fun hasErrors(): Boolean {
+        return false
+    }
+
+
+
     /**
      * Action
      * 操
@@ -102,7 +110,7 @@ class CustomerAction : ActionSupport(), ModelDriven<Customer> {
     @Suppress("unused")
     fun do_save(): String {
 
-        if (customerDataIsNull(customer!!)) {
+        if (checkCustomerDataHasError(customer!!)) {
             return SAVEERROR
         }
         //处理文件上传
@@ -110,14 +118,13 @@ class CustomerAction : ActionSupport(), ModelDriven<Customer> {
 
         if (StringUtils.isEmpty(imageUpLoadFileName)) {
             addActionError("未选择资质图片")
-        }else{
-            handleUploadImg()
+        } else {
+            uploadImg()
         }
 
         customerService!!.saveCustomer(customer!!)
         return SAVESUCCESS
     }
-
 
 
     @Suppress("unused")
@@ -149,15 +156,33 @@ class CustomerAction : ActionSupport(), ModelDriven<Customer> {
         return LISTSUCCESS
     }
 
+    /**
+     * 通过id获取customer数据进入edit界面
+     */
     @Suppress("unused")
-    fun do_edit(): String{
-        println("edit${customer!!.custId}")
-        val findCust:Customer = customerService!!.findById(customer!!.custId!!)
-
+    fun do_edit(): String {
+        val findCust: Customer = customerService!!.findById(customer!!.custId!!)
         val stack = ActionContext.getContext().valueStack
         stack.push(findCust)
         return EDITSUCCESS
     }
+
+    @Suppress("unused")
+    fun do_update(): String {
+        val hasError = checkCustomerDataHasError(customer!!)
+        if (hasError) {
+            return UPDATEERROR
+        }
+        if(imageUpLoad==null){
+            addActionError("图片不能为空!")
+            return UPDATEERROR
+        }
+        uploadImg()
+
+        customerService!!.update(customer!!)
+        return UPDATESUCCESS
+    }
+
 
     /**
      * 抽
@@ -171,7 +196,7 @@ class CustomerAction : ActionSupport(), ModelDriven<Customer> {
      * 校验customer的数据有没有错误,以决定返回resultType
      * @return true 有错误   false没错误
      */
-    private fun customerDataIsNull(customer: Customer): Boolean {
+    private fun checkCustomerDataHasError(customer: Customer): Boolean {
         if (StringUtils.isEmpty(customer.custName)) {
             addActionError("客户名不能为空")
             return true
@@ -216,41 +241,41 @@ class CustomerAction : ActionSupport(), ModelDriven<Customer> {
      * 校验customer的数据添加criteria
      * @return 添加了新约束的criteria
      */
-    private fun handleQueryCriteria(customer: Customer,criteria: DetachedCriteria): DetachedCriteria {
+    private fun handleQueryCriteria(customer: Customer, criteria: DetachedCriteria): DetachedCriteria {
         if (!StringUtils.isEmpty(customer.custName)) {
-            criteria.add(Restrictions.like("custName","%${customer.custName}%"))
+            criteria.add(Restrictions.like("custName", "%${customer.custName}%"))
         }
 
         if (!StringUtils.isEmpty(customer.custPhone)) {
-           criteria.add(Restrictions.like("custPhone","%${customer.custPhone}%"))
+            criteria.add(Restrictions.like("custPhone", "%${customer.custPhone}%"))
 
         }
 
         if (!StringUtils.isEmpty(customer.custMobile)) {
-           criteria.add(Restrictions.like("custMobile","%${customer.custMobile}%"))
+            criteria.add(Restrictions.like("custMobile", "%${customer.custMobile}%"))
         }
 
         //cstLevel为空或其id为0
         if (customer.cstLevel != null && customer.cstLevel?.dictId != 0L) {
-           criteria.add(Restrictions.eq("cstLevel.dictId", customer.cstLevel!!.dictId))
+            criteria.add(Restrictions.eq("cstLevel.dictId", customer.cstLevel!!.dictId))
         }
 
         //cstIndustry为空或其id为0
         if (customer.custIndustry != null && customer.custIndustry?.dictId !=
                 0L) {
-           criteria.add(Restrictions.eq("custIndustry.dictId", customer.custIndustry!!.dictId))
+            criteria.add(Restrictions.eq("custIndustry.dictId", customer.custIndustry!!.dictId))
         }
 
         //cstSource为空或其id为0
         if (customer.custSource != null && customer.custSource?.dictId !=
                 0L) {
-           criteria.add(Restrictions.eq("custSource.dictId", customer.custSource!!.dictId))
+            criteria.add(Restrictions.eq("custSource.dictId", customer.custSource!!.dictId))
         }
 
         return criteria
     }
 
-    private fun handleUploadImg() {
+    private fun uploadImg() {
         val subPath = UploadUtil.genUploadPath(imageUpLoadFileName!!)
         imgDir += subPath
         val file = File(imgDir)

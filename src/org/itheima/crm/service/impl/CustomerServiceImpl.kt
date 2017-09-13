@@ -18,6 +18,10 @@ open class CustomerServiceImpl : CustomerService {
         this.customerDao =customerDao
     }
 
+    override fun update(customer: Customer) {
+         customerDao!!.update(customer)
+    }
+
     override fun findById(custId: Long): Customer {
         return customerDao!!.findById(custId)
     }

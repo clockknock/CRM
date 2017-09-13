@@ -53,16 +53,19 @@
         <action name="*" method="do_{1}" class="customerAction">
             <!-- 新建customer 成功/失败 -->
             <result name="saveSuccess" type="chain">list</result>
-            <result name="saveError" >/jsp/customer/add.jsp</result>
+            <result name="saveError">/jsp/customer/add.jsp</result>
             <!-- 字典查询成功:customer的三个选项类型 -->
-            <result name="resultDictSuccess" type="json" >
+            <result name="resultDictSuccess" type="json">
                 <param name="defaultEncoding">utf-8</param>
                 <param name="root">dicts</param>
             </result>
-            <!-- 跳转列表 -->
+            <!-- 跳转到Customer列表 -->
             <result name="listSuccess">/jsp/customer/list.jsp</result>
-            <!-- 编辑 : 成功 -->
+            <!-- 编辑 -->
             <result name="editSuccess">/jsp/customer/edit.jsp</result>
+            <!--更新 -->
+            <result name="updateSuccess" type="redirectAction">list</result>
+            <result name="updateError">/jsp/customer/edit.jsp</result>
         </action>
     </package>
 
