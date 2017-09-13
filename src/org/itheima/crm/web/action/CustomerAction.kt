@@ -11,6 +11,7 @@ import org.itheima.crm.service.CustomerService
 import org.itheima.crm.service.DictService
 import org.itheima.crm.utils.PropertyPlaceholder
 import org.itheima.crm.utils.UploadUtil
+import org.springframework.context.ApplicationContext
 import org.springframework.util.StringUtils
 import java.io.File
 
@@ -22,12 +23,13 @@ class CustomerAction : ActionSupport(), ModelDriven<Customer> {
     private val SAVEERROR = "saveError"
     private val RESULTDICTSUCCESS = "resultDictSuccess"
     private val LISTSUCCESS = "listSuccess"
+    private val EDITSUCCESS = "editSuccess"
 
     private var imageUpLoad: File? = null
     private var imageUpLoadContentType: String? = null
     private var imageUpLoadFileName: String? = null
 
-    private var fileUploadPath: String? = PropertyPlaceholder.getProperty("file.upload.dir")
+    private var imgDir: String? = PropertyPlaceholder.getProperty("file.upload.dir")
     @Suppress("unused")
     fun setImageUpLoad(imageUpLoad: File) {
         this.imageUpLoad = imageUpLoad
@@ -91,6 +93,12 @@ class CustomerAction : ActionSupport(), ModelDriven<Customer> {
         this.dictService = dictService
     }
 
+    /**
+     * Action
+     * 操
+     * 作
+     */
+
     @Suppress("unused")
     fun do_save(): String {
 
@@ -98,18 +106,19 @@ class CustomerAction : ActionSupport(), ModelDriven<Customer> {
             return SAVEERROR
         }
         //处理文件上传
-        val subPath = UploadUtil.genUploadPath(imageUpLoadFileName!!)
-        fileUploadPath += subPath
-        val file = File(fileUploadPath)
-        if (!file.exists()) {
-            file.mkdirs()
-        }
-        imageUpLoad?.copyTo(file, true)
 
-        customer!!.cstImage = subPath
+
+        if (StringUtils.isEmpty(imageUpLoadFileName)) {
+            addActionError("未选择资质图片")
+        }else{
+            handleUploadImg()
+        }
+
         customerService!!.saveCustomer(customer!!)
         return SAVESUCCESS
     }
+
+
 
     @Suppress("unused")
     fun do_dict(): String {
@@ -139,6 +148,24 @@ class CustomerAction : ActionSupport(), ModelDriven<Customer> {
 
         return LISTSUCCESS
     }
+
+    @Suppress("unused")
+    fun do_edit(): String{
+        println("edit${customer!!.custId}")
+        val findCust:Customer = customerService!!.findById(customer!!.custId!!)
+
+        val stack = ActionContext.getContext().valueStack
+        stack.push(findCust)
+        return EDITSUCCESS
+    }
+
+    /**
+     * 抽
+     * 取
+     * 的
+     * 方
+     * 法
+     */
 
     /**
      * 校验customer的数据有没有错误,以决定返回resultType
@@ -181,10 +208,6 @@ class CustomerAction : ActionSupport(), ModelDriven<Customer> {
             return true
         }
 
-        if (StringUtils.isEmpty(imageUpLoadFileName)) {
-            addActionError("未选择资质图片")
-            return true
-        }
 
         return false
     }
@@ -225,6 +248,18 @@ class CustomerAction : ActionSupport(), ModelDriven<Customer> {
         }
 
         return criteria
+    }
+
+    private fun handleUploadImg() {
+        val subPath = UploadUtil.genUploadPath(imageUpLoadFileName!!)
+        imgDir += subPath
+        val file = File(imgDir)
+        if (!file.exists()) {
+            file.mkdirs()
+        }
+        imageUpLoad?.copyTo(file, true)
+
+        customer!!.cstImage = subPath
     }
 
 }

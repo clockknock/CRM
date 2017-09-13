@@ -10,6 +10,10 @@ import org.springframework.orm.hibernate5.support.HibernateDaoSupport
  * Created by 钟未鸣 on 2017/9/10 .
  */
 class CustomerDaoImpl : CustomerDao,HibernateDaoSupport() {
+    override fun findById(custId: Long): Customer {
+        return hibernateTemplate.get(Customer::class.java,custId)
+    }
+
     override fun totalCount(criteria: DetachedCriteria): Long {
         criteria.setProjection(Projections.rowCount())
         return hibernateTemplate.findByCriteria(criteria)[0] as Long

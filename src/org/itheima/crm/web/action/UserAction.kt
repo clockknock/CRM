@@ -28,6 +28,7 @@ class UserAction : ActionSupport(), ModelDriven<User>, ServletRequestAware {
     }
 
     private var imageStream: InputStream? = null
+    @Suppress("unused")
     fun getImageStream(): InputStream? {
         return imageStream
     }
@@ -45,34 +46,35 @@ class UserAction : ActionSupport(), ModelDriven<User>, ServletRequestAware {
         return user as User
     }
 
+    @Suppress("unused")
     fun do_login(): String {
-        if(StringUtils.isEmpty(user!!.userCode)){
-            addFieldError("userCode","用户名不能为空")
+        if (StringUtils.isEmpty(user!!.userCode)) {
+            addFieldError("userCode", "用户名不能为空")
             return LOGIN_ERROR
         }
 
-        if(StringUtils.isEmpty(user!!.userPassword)){
-            addFieldError("userPassword","密码不能为空")
+        if (StringUtils.isEmpty(user!!.userPassword)) {
+            addFieldError("userPassword", "密码不能为空")
             return LOGIN_ERROR
         }
 
-        if(StringUtils.isEmpty(user!!.validateCode)){
-            addFieldError("validateCode","验证码不能为空")
+        if (StringUtils.isEmpty(user!!.validateCode)) {
+            addFieldError("validateCode", "验证码不能为空")
             return LOGIN_ERROR
         }
 
-      /*  TODO 先不填验证码了
-      val validateCode = request!!.session.getAttribute("validateCode") as String
+        /*  TODO 先不填验证码了
+        val validateCode = request!!.session.getAttribute("validateCode") as String
 
-        if(StringUtils.isEmpty(validateCode)){
-            addFieldError("validateCode","无法刷新验证码")
-            return LOGIN_ERROR
-        }
+          if(StringUtils.isEmpty(validateCode)){
+              addFieldError("validateCode","无法刷新验证码")
+              return LOGIN_ERROR
+          }
 
-        if(!validateCode.equals(user!!.validateCode,true)){
-            addFieldError("validateCode","验证码错误")
-            return LOGIN_ERROR
-        }*/
+          if(!validateCode.equals(user!!.validateCode,true)){
+              addFieldError("validateCode","验证码错误")
+              return LOGIN_ERROR
+          }*/
 
         val loginUser: User = userService?.login(user!!) ?: return LOGIN_ERROR
         val session = request!!.session
@@ -80,14 +82,16 @@ class UserAction : ActionSupport(), ModelDriven<User>, ServletRequestAware {
         return LOGIN_SUCCESS
     }
 
+    @Suppress("unused")
     fun do_validateCode(): String {
-        val code = ValidateCode(130,28,4,4)
+        val code = ValidateCode(130, 28, 4, 4)
         request!!.session.setAttribute("validateCode", code.code)
         imageStream = code.getInputStream()
         return VALIDATECODE_SUCCESS
     }
 
-    fun do_logout():String{
+    @Suppress("unused")
+    fun do_logout(): String {
         request!!.session.removeAttribute("user")
 
         return LOGOUT_SUCCESS
@@ -114,7 +118,7 @@ fun ValidateCode.getInputStream(): InputStream? {
                 e.printStackTrace()
             }
             @Suppress("UNUSED_VALUE")
-            baos =null
+            baos = null
         }
     }
     return bais

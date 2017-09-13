@@ -14,7 +14,8 @@
           rel="stylesheet"/>
     <script type="text/javascript"
             src="${pageContext.request.contextPath }/js/jquery-1.8.3.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/addOptions.js"></script>
+    <script type="text/javascript"
+            src="${pageContext.request.contextPath}/js/addOptions.js"></script>
     <script type="text/javascript">
         $(function () {
             addOptions("006", "custLevel");
@@ -80,11 +81,13 @@
 
                                     <td>客户名称：</td>
                                     <td><s:textfield class="textbox" id="custName"
-                                               style="width: 80px" maxlength="50" name="custName"/>
+                                                     style="width: 80px" maxlength="50"
+                                                     name="custName"/>
                                     </td>
 
                                     <td>客户级别：</td>
-                                    <td id="custLevel_data" data="<s:property value="cstLevel.dictId" />">
+                                    <td id="custLevel_data"
+                                        data="<s:property value="cstLevel.dictId" />">
                                         <select name="cstLevel.dictId" id="custLevel"
                                                 style="width: 100px;height:
                             22px;">
@@ -93,7 +96,8 @@
                                     </td>
 
                                     <td>客户来源：</td>
-                                    <td id="custSource_data" data="<s:property value="custSource.dictId" />">
+                                    <td id="custSource_data"
+                                        data="<s:property value="custSource.dictId" />">
                                         <select name="custSource.dictId" id="custSource"
                                                 style="width: 100px;height:
                             22px;">
@@ -114,12 +118,14 @@
 
                                     <td>电话：</td>
                                     <td><s:textfield class="textbox" id="custPhone"
-                                               style="width: 80px" maxlength="50" name="custPhone"/>
+                                                     style="width: 80px" maxlength="50"
+                                                     name="custPhone"/>
                                     </td>
 
                                     <td>手机：</td>
                                     <td><s:textfield class="textbox" id="sChannel2"
-                                               style="width: 80px" maxlength="50" name="custMobile"/>
+                                                     style="width: 80px" maxlength="50"
+                                                     name="custMobile"/>
                                     </td>
 
                                     <td><input class="button" id="sButton2" type="submit"
@@ -154,7 +160,8 @@
                                                 value="#customer.custSource.dictItemName"/></td>
                                         <td><s:property value="#customer.custPhone"/></td>
                                         <td><s:property value="#customer.custMobile"/></td>
-                                        <td><a href="">修改</a>
+                                        <td><a
+                                                href="${pageContext.request.contextPath}/customer/edit.action?custId=<s:property value="#customer.custId"/>">修改</a>
                                             &nbsp;&nbsp; <a href="">删除</a>
                                         </td>
                                     </tr>

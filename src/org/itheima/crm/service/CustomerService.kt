@@ -12,5 +12,6 @@ interface CustomerService {
 //    fun findList(criteria: DetachedCriteria): List<Customer>
     fun totalCount(criteria: DetachedCriteria): Long
     fun findBean(criteria: DetachedCriteria, currentPage: Int, pageSize: Int): PageBean<Customer>
+    fun findById(custId: Long): Customer
 
 }

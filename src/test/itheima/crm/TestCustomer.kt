@@ -28,6 +28,11 @@ class TestCustomer {
     @Autowired
     private var customerService: CustomerService? =null
 
+    @Test fun testFindById(){
+        val findById = customerService!!.findById(1)
+        println(findById)
+    }
+
     @Test fun testPropertyHolder(){
         val property = PropertyPlaceholder.getProperty("file.upload.dir")
         println(property)

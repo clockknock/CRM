@@ -61,6 +61,8 @@
             </result>
             <!-- 跳转列表 -->
             <result name="listSuccess">/jsp/customer/list.jsp</result>
+            <!-- 编辑 : 成功 -->
+            <result name="editSuccess">/jsp/customer/edit.jsp</result>
         </action>
     </package>
 

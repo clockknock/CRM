@@ -5,6 +5,7 @@ import org.itheima.crm.dao.CustomerDao
 import org.itheima.crm.domain.Customer
 import org.itheima.crm.domain.PageBean
 import org.itheima.crm.service.CustomerService
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.transaction.annotation.Transactional
 
 /**
@@ -12,6 +13,15 @@ import org.springframework.transaction.annotation.Transactional
  */
 @Transactional
 open class CustomerServiceImpl : CustomerService {
+    private var customerDao: CustomerDao? = null
+    fun setCustomerDao(customerDao: CustomerDao){
+        this.customerDao =customerDao
+    }
+
+    override fun findById(custId: Long): Customer {
+        return customerDao!!.findById(custId)
+    }
+
     override fun findBean(criteria: DetachedCriteria, currentPage: Int, pageSize: Int): PageBean<Customer> {
         val pageBean = PageBean<Customer>()
         val totalCount = customerDao!!.totalCount(criteria)
@@ -33,10 +43,6 @@ open class CustomerServiceImpl : CustomerService {
 //        return customerDao?.findList(criteria)!!
 //    }
 
-    private var customerDao: CustomerDao? = null
-    fun setCustomerDao(customerDao: CustomerDao){
-        this.customerDao =customerDao
-    }
 
     override fun saveCustomer(customer: Customer) {
         println(customer)
