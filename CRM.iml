@@ -12,6 +12,13 @@
       </configuration>
       <facet type="Struts2" name="Struts 2">
         <configuration>
+          <fileset id="s2fileset" name="My Fileset " removed="false">
+            <file>file://$MODULE_DIR$/src/struts.xml</file>
+            <file>jar://E:/data/libs/JavaEE/ssh/struts2/libs/struts2-core-2.3.32.jar!/struts-default.xml</file>
+            <file>jar://E:/data/libs/JavaEE/ssh/struts-2.3.32-all/lib/struts2-json-plugin-2.3.32.jar!/struts-plugin.xml</file>
+            <file>jar://E:/data/libs/JavaEE/ssh/struts-2.3.32-all/lib/struts2-spring-plugin-2.3.32.jar!/struts-plugin.xml</file>
+            <file>jar://E:/data/libs/JavaEE/ssh/struts2/libs/struts2-spring-plugin-2.3.32.jar!/struts-plugin.xml</file>
+          </fileset>
           <propertiesKeys disabled="false" />
         </configuration>
       </facet>

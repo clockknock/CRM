@@ -29,7 +29,7 @@ class TestCustomer {
     private var customerService: CustomerService? =null
 
     @Test fun testFindById(){
-        val findById = customerService!!.findById(1)
+        val findById = customerService!!.findById(11)
         println(findById)
     }
 

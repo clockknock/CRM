@@ -1,3 +1,4 @@
+<%--suppress ALL --%>
 <%--
   Created by IntelliJ IDEA.
   User: zhong
@@ -177,12 +178,16 @@
                                 <tbody>
                                 <tr>
                                     <td class="menuSmall">
-                                        <a class="style2" href="linkmanServlet?method=add" target="main">－ 新增联系人</a>
+                                        <a class="style2"
+                                           href="${pageContext.request.contextPath}/jsp/linkman/add.jsp"
+                                           target="main">－
+                                            新增联系人</a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class=menuSmall>
-                                        <a class=style2 href="linkmanServlet?method=list" target=main>－联系人列表</A>
+                                        <a class=style2
+                                           href="${pageContext.request.contextPath}/jsp/linkman/list.jsp" target=main>－联系人列表</A>
                                     </td>
                                 </tr>
 

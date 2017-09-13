@@ -50,12 +50,13 @@
                 <value>${hibernate.mapping.dir}</value>
             </array>
         </property>
-        <property name="mappingLocations">
-            <list>
-                <value>classpath:org/itheima/crm/domain/BaseDict.hbm.xml</value>
-                <value>classpath:org/itheima/crm/domain/Customer.hbm.xml</value>
-            </list>
-        </property>
+        <!--<property name="mappingLocations">-->
+            <!--<list>-->
+                <!--<value>classpath:org/itheima/crm/domain/BaseDict.hbm.xml</value>-->
+                <!--<value>classpath:org/itheima/crm/domain/Customer.hbm.xml</value>-->
+                <!--<value>classpath:org/itheima/crm/domain/Linkman.hbm.xml</value>-->
+            <!--</list>-->
+        <!--</property>-->
     </bean>
 
     <!-- 事务管理 -->
@@ -102,4 +103,14 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
+    <!-- Linkman模块 -->
+    <bean id="linkmanAction" class="org.itheima.crm.web.action.LinkmanAction">
+    </bean>
+
+    <bean id="linkmanService" class="org.itheima.crm.service.impl.LinkmanServiceImpl">
+    </bean>
+
+    <bean id="linkmanDao" class="org.itheima.crm.dao.LinkmanDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
 </beans>

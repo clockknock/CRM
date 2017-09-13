@@ -71,5 +71,10 @@
         </action>
     </package>
 
+    <package name="linkman" namespace="/linkman" extends="base">
+        <action name="*" method="do_{1}" class="linkmanAction">
+            <result name="listSuccess">/jsp/linkman/list.jsp</result>
+        </action>
+    </package>
 
 </struts>
