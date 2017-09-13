@@ -111,6 +111,7 @@
                                 <option value="0">请选择</option>
                             </select>
                         </td>
+
                         <td>所属行业 ：</td>
                         <td id="custIndustry_data"
                             data="<s:property value="custIndustry.dictId" />">

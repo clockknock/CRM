@@ -129,8 +129,10 @@ class CustomerAction : ActionSupport(), ModelDriven<Customer> {
     @Suppress("unused")
     fun do_list(): String {
         val stack = ActionContext.getContext().valueStack
+        var criteria = DetachedCriteria.forClass(Customer::class.java)
 
-        val criteria = DetachedCriteria.forClass(Customer::class.java)
+        criteria = handleQueryCriteria(customer!!, criteria)
+
         val pageBean = customerService!!.findBean(criteria, currentPage, pageSize)
 
         stack.push(pageBean)
@@ -185,6 +187,44 @@ class CustomerAction : ActionSupport(), ModelDriven<Customer> {
         }
 
         return false
+    }
+
+    /**
+     * 校验customer的数据添加criteria
+     * @return 添加了新约束的criteria
+     */
+    private fun handleQueryCriteria(customer: Customer,criteria: DetachedCriteria): DetachedCriteria {
+        if (!StringUtils.isEmpty(customer.custName)) {
+            criteria.add(Restrictions.like("custName","%${customer.custName}%"))
+        }
+
+        if (!StringUtils.isEmpty(customer.custPhone)) {
+           criteria.add(Restrictions.like("custPhone","%${customer.custPhone}%"))
+
+        }
+
+        if (!StringUtils.isEmpty(customer.custMobile)) {
+           criteria.add(Restrictions.like("custMobile","%${customer.custMobile}%"))
+        }
+
+        //cstLevel为空或其id为0
+        if (customer.cstLevel != null && customer.cstLevel?.dictId != 0L) {
+           criteria.add(Restrictions.eq("cstLevel.dictId", customer.cstLevel!!.dictId))
+        }
+
+        //cstIndustry为空或其id为0
+        if (customer.custIndustry != null && customer.custIndustry?.dictId !=
+                0L) {
+           criteria.add(Restrictions.eq("custIndustry.dictId", customer.custIndustry!!.dictId))
+        }
+
+        //cstSource为空或其id为0
+        if (customer.custSource != null && customer.custSource?.dictId !=
+                0L) {
+           criteria.add(Restrictions.eq("custSource.dictId", customer.custSource!!.dictId))
+        }
+
+        return criteria
     }
 
 }

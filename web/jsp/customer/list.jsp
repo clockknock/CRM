@@ -14,8 +14,14 @@
           rel="stylesheet"/>
     <script type="text/javascript"
             src="${pageContext.request.contextPath }/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/addOptions.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            addOptions("006", "custLevel");
+            addOptions("001", "custIndustry");
+            addOptions("002", "custSource");
+        });
 
-    <script language=javascript>
         function to_page(page) {
             console.log(page)
             if (page) {
@@ -30,7 +36,7 @@
 
 <body>
 <form id="customerForm" name="customerForm"
-      action="${pageContext.request.contextPath }/customer/list.action" method=post>
+      action="${pageContext.request.contextPath }/customer/list.action" method="post">
 
     <table cellspacing="0" cellpadding="0" width="98%" border="0">
         <tbody>
@@ -73,42 +79,50 @@
                                 <tr>
 
                                     <td>客户名称：</td>
-                                    <td><input class="textbox" id="cust_name"
-                                               style="width: 80px" maxlength="50" name="cust_name">
+                                    <td><s:textfield class="textbox" id="custName"
+                                               style="width: 80px" maxlength="50" name="custName"/>
                                     </td>
 
                                     <td>客户级别：</td>
-                                    <td><select class="textbox" id="custLevel"
-                                                style="width: 80px; height: 19px;"
-                                                name="custLevel.dict_id">
-                                        <option value="0">请选择</option>
-                                    </select></td>
+                                    <td id="custLevel_data" data="<s:property value="cstLevel.dictId" />">
+                                        <select name="cstLevel.dictId" id="custLevel"
+                                                style="width: 100px;height:
+                            22px;">
+                                            <option value="0">请选择</option>
+                                        </select>
+                                    </td>
 
                                     <td>客户来源：</td>
-                                    <td><select class="textbox" id="custSource"
-                                                style="width: 80px; height: 19px;"
-                                                name="custSource.dict_id">
-                                        <option value="0">请选择</option>
-                                    </select></td>
+                                    <td id="custSource_data" data="<s:property value="custSource.dictId" />">
+                                        <select name="custSource.dictId" id="custSource"
+                                                style="width: 100px;height:
+                            22px;">
+                                            <option value="0">请选择</option>
+                                        </select>
+                                    </td>
 
                                     <td>客户行业：</td>
-                                    <td><select class="textbox" id="custIndustry"
-                                                style="width: 80px; height: 19px;"
-                                                name="custIndustry.dict_id">
-                                        <option value="0">请选择</option>
-                                    </select></td>
+                                    <td id="custIndustry_data"
+                                        data="<s:property value="custIndustry.dictId" />">
+
+                                        <select name="custIndustry.dictId" id="custIndustry"
+                                                style="width: 100px;height:
+                            22px;">
+                                            <option value="0">请选择</option>
+                                        </select>
+                                    </td>
 
                                     <td>电话：</td>
-                                    <td><input class="textbox" id="custPhone"
-                                               style="width: 80px" maxlength="50" name="custPhone">
+                                    <td><s:textfield class="textbox" id="custPhone"
+                                               style="width: 80px" maxlength="50" name="custPhone"/>
                                     </td>
 
                                     <td>手机：</td>
-                                    <td><input class="textbox" id="sChannel2"
-                                               style="width: 80px" maxlength="50" name="custMobile">
+                                    <td><s:textfield class="textbox" id="sChannel2"
+                                               style="width: 80px" maxlength="50" name="custMobile"/>
                                     </td>
 
-                                    <td><input class="button" id="sButton2"
+                                    <td><input class="button" id="sButton2" type="submit"
                                                value=" 筛选 " name="sButton2"></td>
                                 </tr>
                                 </tbody>
@@ -163,11 +177,11 @@
                                                           onchange="to_page()"></s:select>
 												条
                                                 <s:if test="currentPage >1">
-												[<a href="javascript:to_page(${currentPage-1})">前一页</a>]
+                                                    [<a href="javascript:to_page(${currentPage-1})">前一页</a>]
                                                 </s:if>
 												<B><s:property value="currentPage"/></B>
                                                 <s:if test="currentPage < totalPage">
-												[<a href="javascript:to_page(${currentPage+1})">后一页</a>]
+                                                    [<a href="javascript:to_page(${currentPage+1})">后一页</a>]
                                                 </s:if>
 												到
 												<input type="text" size="3" id="page"
