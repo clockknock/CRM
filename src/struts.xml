@@ -8,7 +8,12 @@
     <!-- 配置spring托管 -->
     <constant name="struts.objectFactory" value="spring"/>
 
+    <!-- 配置一些常量 -->
     <constant name="struts.ui.theme" value="simple"/>
+    <constant name="struts.xwork.chaining.copyErrors" value="true"/>
+    <constant name="struts.xwork.chaining.copyFieldErrors" value="true"/>
+    <constant name="struts.xwork.chaining.copyMessages" value="true"/>
+
 
     <package name="base" abstract="true" extends="json-default">
         <!-- 定义拦截器 -->
@@ -78,7 +83,9 @@
             <!-- 跳转至linkman list -->
             <result name="listSuccess">/jsp/linkman/list.jsp</result>
             <!-- 保存成功:跳转至linkman list -->
-            <result name="saveSuccess" type="redirectAction">list</result>
+            <result name="saveSuccess" type="chain">list</result>
+            <!-- 保存失败:回到add.jsp页面-->
+            <result name="saveError" type="chain">add</result>
         </action>
     </package>
 

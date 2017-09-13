@@ -59,20 +59,30 @@
                                     style="width: 180px; height: 21px;">
                                 <option value="0">请选择</option>
                                 <s:iterator value="customers" var="customer">
-                                <option
-                                        value="<s:property value="#customer.custId"/>"> <s:property
-                                    value="#customer.custName" />
-                                     </option>
+                                    <s:if test="customer.custId == #customer.custId">
+                                        <option selected
+                                                value="<s:property value="#customer.custId"/>">
+                                            <s:property
+                                                    value="#customer.custName"/>
+                                        </option>
+                                    </s:if>
+                                    <s:else>
+                                        <option
+                                                value="<s:property value="#customer.custId"/>">
+                                            <s:property
+                                                    value="#customer.custName"/>
+                                        </option>
+                                    </s:else>
 
-                            </s:iterator>
+                                </s:iterator>
 
-                        </select></td>
+                            </select></td>
                     </tr>
                     <tr>
                         <td>联系人名称：</td>
                         <td>
                             <s:textfield class="textbox" id="lkmName"
-                                style="width: 180px" maxlength="50" name="lkmName"/>
+                                         style="width: 180px" maxlength="50" name="lkmName"/>
                         </td>
 
                         <td>联系人性别：</td>
@@ -84,36 +94,38 @@
                     <tr>
                         <td>联系人办公电话 ：</td>
                         <td><s:textfield class="textbox" id="lkmPhone"
-                                   style="width: 180px" maxlength="50" name="lkmPhone"/></td>
+                                         style="width: 180px" maxlength="50" name="lkmPhone"/></td>
 
                         <td>联系人手机 ：</td>
                         <td><s:textfield class="textbox" id="lkmMobile"
-                                   style="width: 180px" maxlength="50" name="lkmMobile"/></td>
+                                         style="width: 180px" maxlength="50" name="lkmMobile"/></td>
                     </tr>
 
                     <tr>
                         <td>联系人邮箱 ：</td>
                         <td><s:textfield class="textbox" id="lkmEmail"
-                                   style="width: 180px" maxlength="50" name="lkmEmail"/></td>
+                                         style="width: 180px" maxlength="50" name="lkmEmail"/></td>
 
                         <td>联系人QQ ：</td>
                         <td><s:textfield class="textbox" id="lkmQq"
-                                   style="width: 180px" maxlength="50" name="lkmQq"/></td>
+                                         style="width: 180px" maxlength="50" name="lkmQq"/></td>
                     </tr>
 
                     <tr>
                         <td>联系人职位 ：</td>
                         <td><s:textfield class="textbox" id="lkmPosition"
-                                   style="width: 180px" maxlength="50" name="lkmPosition"/></td>
+                                         style="width: 180px" maxlength="50"
+                                         name="lkmPosition"/></td>
 
                         <td>联系人备注 ：</td>
                         <td><s:textfield class="textbox" id="lkmComment"
-                                   style="width: 180px" maxlength="50" name="lkmComment"/></td>
+                                         style="width: 180px" maxlength="50"
+                                         name="lkmComment"/></td>
                     </tr>
 
                     <tr>
                         <td></td>
-                        <td><s:actionerror/></td>
+                        <td><s:actionerror style="color:red"/></td>
                     </tr>
 
                     <tr>
@@ -137,7 +149,7 @@
             <td width="15"><img
                     src="${pageContext.request.contextPath}/images/new_024.jpg"
                     border="0"></td>
-            <td align=middle width="100%"
+            <td align="center" width="100%"
                 background="${pageContext.request.contextPath}/images/new_025.jpg"
                 height=15></td>
             <td width="15"><img

@@ -104,7 +104,7 @@
     </bean>
 
     <!-- Linkman模块 -->
-    <bean id="linkmanAction" class="org.itheima.crm.web.action.LinkmanAction">
+    <bean id="linkmanAction" class="org.itheima.crm.web.action.LinkmanAction" scope="prototype">
     </bean>
 
     <bean id="linkmanService" class="org.itheima.crm.service.impl.LinkmanServiceImpl">
