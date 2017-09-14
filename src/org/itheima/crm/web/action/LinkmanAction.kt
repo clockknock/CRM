@@ -4,8 +4,8 @@ import com.opensymphony.xwork2.ActionContext
 import com.opensymphony.xwork2.ActionSupport
 import com.opensymphony.xwork2.ModelDriven
 import org.hibernate.criterion.DetachedCriteria
+import org.hibernate.criterion.Restrictions
 import org.itheima.crm.domain.Linkman
-import org.itheima.crm.domain.PageBean
 import org.itheima.crm.service.CustomerService
 import org.itheima.crm.service.LinkmanService
 import org.springframework.beans.factory.annotation.Autowired
@@ -46,8 +46,10 @@ class LinkmanAction : ActionSupport(), ModelDriven<Linkman> {
     fun do_list(): String {
         val criteria = DetachedCriteria.forClass(Linkman::class.java)
 
+        //增加筛选条件
+        criteria.addRestrictions(linkman!!)
+
         val pageBean =linkmanService.findPage(criteria, currentPage, pageSize)
-        println("dolist:$pageBean")
         val stack = ActionContext.getContext().valueStack
 
         stack.push(pageBean)
@@ -112,4 +114,32 @@ class LinkmanAction : ActionSupport(), ModelDriven<Linkman> {
 
     @Autowired private lateinit var linkmanService: LinkmanService
     @Autowired private lateinit var customerService: CustomerService
+}
+
+private fun DetachedCriteria.addRestrictions(linkman: Linkman) {
+    val name = linkman.lkmName
+    if(!name.isNullOrEmpty()){
+        this.add(Restrictions.like("lkmName","%$name%"))
+    }
+    val lkmGender=linkman.lkmGender
+    if(lkmGender!=0 && lkmGender!=null){
+        this.add(Restrictions.eq("lkmGender",lkmGender))
+    }
+    val phone= linkman.lkmPhone
+    if(!phone.isNullOrEmpty()){
+        this.add(Restrictions.like("lkmPhone","%$phone%"))
+    }
+    val mobile= linkman.lkmMobile
+    if(!mobile.isNullOrEmpty()){
+        this.add(Restrictions.like("lkmMobile","%$mobile%"))
+    }
+    val email = linkman.lkmEmail
+    if(!email.isNullOrEmpty()){
+        this.add(Restrictions.like("lkmEmail","%$email%"))
+    }
+    val qq = linkman.lkmQq
+    if(!qq.isNullOrEmpty()){
+        this.add(Restrictions.like("lkmQq","%$qq%"))
+    }
+
 }

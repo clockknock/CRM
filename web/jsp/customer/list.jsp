@@ -175,31 +175,31 @@
 
                     <tr>
                         <td>
-											<span id="pagelink">
-											<div
-                                                    style="line-height: 20px; height: 20px; text-align: right">
-												共[<b>${totalCount}</b>]条记录,[<b>${totalPage}</b>]页
-												,每页显示
-												<s:select name="pageSize"
-                                                          list="#{'5':'5','10':'10','20':'20','30':'30'}"
-                                                          onchange="to_page()"></s:select>
-												条
-                                                <s:if test="currentPage >1">
-                                                    [<a href="javascript:to_page(${currentPage-1})">前一页</a>]
-                                                </s:if>
-												<B><s:property value="currentPage"/></B>
-                                                <s:if test="currentPage < totalPage">
-                                                    [<a href="javascript:to_page(${currentPage+1})">后一页</a>]
-                                                </s:if>
-												到
-												<input type="text" size="3" id="page"
-                                                       name="currentPage"/>
-												页
-												
-												<input type="button" value="Go"
-                                                       onclick="to_page()"/>
-											</div>
-											</span>
+                            <span id="pagelink">
+                            <div
+                                    style="line-height: 20px; height: 20px; text-align: right">
+                                共[<b>${totalCount}</b>]条记录,[<b>${totalPage}</b>]页
+                                ,每页显示
+                                <s:select name="pageSize"
+                                          list="#{'5':'5','10':'10','20':'20','30':'30'}"
+                                          onchange="to_page()"></s:select>
+                                条
+                                <s:if test="currentPage >1">
+                                    [<a href="javascript:to_page(${currentPage-1})">前一页</a>]
+                                </s:if>
+                                <B><s:property value="currentPage"/></B>
+                                <s:if test="currentPage < totalPage">
+                                    [<a href="javascript:to_page(${currentPage+1})">后一页</a>]
+                                </s:if>
+                                到
+                                <input type="text" size="3" id="page"
+                                       name="currentPage"/>
+                                页
+
+                                <input type="button" value="Go"
+                                       onclick="to_page()"/>
+                            </div>
+                            </span>
                         </td>
                     </tr>
                     </tbody>

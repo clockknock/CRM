@@ -73,35 +73,33 @@
                                 <tbody>
                                 <tr>
                                     <td>联系人名称：</td>
-                                    <td><input class="textbox" id="lkm_name"
-                                               style="WIDTH: 80px" maxLength="50" name="lkm_name">
+                                    <td><s:textfield class="textbox" id="lkmName"
+                                                     style="WIDTH: 80px" maxLength="50"
+                                                     name="lkmName"/>
                                     </td>
 
                                     <td>性别：</td>
-                                    <td><select name="lkm_gender"
-                                                style="WIDTH: 80px; height: 21px" class="textbox">
-                                        <option value="0">请选择</option>
-                                        <option value="1">男</option>
-                                        <option value="2">女</option>
-                                    </select>
+                                    <td>
+                                        <s:select name="lkmGender" style="width:100px;height:22px;"
+                                                  list="#{'0':'请选择','1':'男','2':'女'}"></s:select>
                                     <td>办公电话：</td>
-                                    <td><input class="textbox" id="lkm_phone"
-                                               style="WIDTH: 80px" maxLength="50" name="lkm_phone">
+                                    <td><s:textfield class="textbox" id="lkmPhone"
+                                               style="WIDTH: 80px" maxLength="50" name="lkmPhone"/>
                                     </td>
 
                                     <td>手机：</td>
-                                    <td><input class="textbox" id="lkm_mobile"
-                                               style="WIDTH: 80px" maxLength="50" name="lkm_mobile">
+                                    <td><s:textfield class="textbox" id="lkmMobile"
+                                               style="WIDTH: 80px" maxLength="50" name="lkmMobile"/>
                                     </td>
 
                                     <td>邮箱：</td>
-                                    <td><input class="textbox" id="lkm_email"
-                                               style="WIDTH: 80px" maxLength="50" name="lkm_email">
+                                    <td><s:textfield class="textbox" id="lkmEmail"
+                                               style="WIDTH: 80px" maxLength="50" name="lkmEmail"/>
                                     </td>
 
                                     <td>QQ：</td>
-                                    <td><input class="textbox" id="lkm_qq"
-                                               style="WIDTH: 80px" maxLength="50" name="lkm_qq">
+                                    <td><s:textfield class="textbox" id="lkmQq"
+                                               style="WIDTH: 80px" maxLength="50" name="lkmQq"/>
                                     </td>
 
                                     <td><input class="button" id="sButton2" type="submit"
@@ -129,21 +127,26 @@
                                     <td>操作</td>
                                 </tr>
 
-
-                                <tr
-                                        style="font-weight: normal; font-style: normal; background-color: white; text-decoration: none">
-                                    <td>linkman.lkm_name</td>
-                                    <td>linkman.lkm_gender</td>
-                                    <td>linkman.lkm_phone</td>
-                                    <td>linkman.lkm_mobile</td>
-                                    <td>linkman.lkm_email</td>
-                                    <td>linkman.lkm_qq</td>
-                                    <td><a
-                                            href="${pageContext.request.contextPath}/linkman/edit.action?lkm_id=">修改</a>
-                                        &nbsp;&nbsp; <a
-                                                href="${pageContext.request.contextPath}/linkman/delete.action?lkm_id=">删除</a>
-                                    </td>
-                                </tr>
+                                <s:iterator value="datas" var="linkman">
+                                    <tr
+                                            style="font-weight: normal; font-style: normal; background-color: white; text-decoration: none">
+                                        <td><s:property value="#linkman.lkmName"/></td>
+                                        <td>
+                                            <s:if test="#linkman.lkmGender==1">男</s:if>
+                                            <s:if test="#linkman.lkmGender==2">女</s:if>
+                                            <%--<s:property value="#linkman.lkmGender"/>--%>
+                                        </td>
+                                        <td><s:property value="#linkman.lkmPhone"/></td>
+                                        <td><s:property value="#linkman.lkmMobile"/></td>
+                                        <td><s:property value="#linkman.lkmEmail"/></td>
+                                        <td><s:property value="#linkman.lkmQq"/></td>
+                                        <td><a
+                                                href="${pageContext.request.contextPath}/linkman/edit.action?lkm_id=<s:property value="#linkman.lkmId"/>">修改</a>
+                                            &nbsp;&nbsp; <a
+                                                    href="${pageContext.request.contextPath}/linkman/delete.action?lkm_id=<s:property value="#linkman.lkmId"/>">删除</a>
+                                        </td>
+                                    </tr>
+                                </s:iterator>
 
 
                                 </tbody>
@@ -154,6 +157,8 @@
                     <tr>
                         <td>
                             <%--分页显示--%>
+                            <s:include value="/paging.jsp"></s:include>
+
                         </td>
                     </tr>
                     </tbody>
@@ -183,6 +188,7 @@
         </tbody>
     </table>
 </form>
+
 <s:debug/>
 </body>
 
